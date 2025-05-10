@@ -76,7 +76,7 @@ export async function POST(request: Request) {
             purchaseDate: purchaseDate,
             progress: 0,
             completedChapters: [],
-            rating: 0,
+            rating: null,
           },
         },
       },

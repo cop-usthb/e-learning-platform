@@ -1,100 +1,86 @@
 "use client"
 
 import { useState } from "react"
-import { useRouter } from "next/navigation"
-import { useSession } from "next-auth/react"
 import { Button } from "@/components/ui/button"
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-} from "@/components/ui/dialog"
-import { toast } from "@/hooks/use-toast"
+import { useSession } from "next-auth/react"
+import { useRouter } from "next/navigation"
+import { useToast } from "@/components/ui/use-toast"
+import { ShoppingCart } from "lucide-react"
 
 interface PurchaseCourseButtonProps {
   courseId: string
+  price: number
 }
 
-export default function PurchaseCourseButton({ courseId }: PurchaseCourseButtonProps) {
+export default function PurchaseCourseButton({ courseId, price }: PurchaseCourseButtonProps) {
   const { data: session } = useSession()
   const router = useRouter()
-  const [isLoading, setIsLoading] = useState(false)
-  const [showDialog, setShowDialog] = useState(false)
+  const { toast } = useToast()
+  
+  const [isProcessing, setIsProcessing] = useState(false)
 
   const handlePurchase = async () => {
-    if (!session) {
-      router.push(`/login?redirect=/courses/${courseId}`)
+    if (!session?.user) {
+      // S'assurer que la redirection utilise "courseId" comme nom de paramètre
+      router.push(`/login?returnUrl=/courses/${courseId}`)
       return
     }
 
-    setShowDialog(true)
-  }
+    setIsProcessing(true)
 
-  const confirmPurchase = async () => {
     try {
-      setIsLoading(true)
-
-      const response = await fetch("/api/user/courses/purchase", {
+      const response = await fetch("/api/purchases", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ courseId }),
+        body: JSON.stringify({
+          courseId,
+          price,
+        }),
       })
 
       if (!response.ok) {
-        const error = await response.json()
-        throw new Error(error.error || "Erreur lors de l'achat du cours")
+        const errorData = await response.json()
+        throw new Error(errorData.message || "Erreur lors de l'achat")
       }
 
+      // Achat réussi
       toast({
         title: "Achat réussi",
-        description: "Vous avez maintenant accès à ce cours.",
+        description: "Félicitations ! Vous avez accès à ce cours.",
       })
-
-      router.refresh()
-      router.push("/profile")
+      
+      // S'assurer que la redirection utilise "courseId" comme nom de paramètre
+      router.push(`/my-courses/${courseId}`)
+      
     } catch (error) {
       console.error("Purchase error:", error)
       toast({
-        title: "Erreur",
-        description: error instanceof Error ? error.message : "Une erreur est survenue",
+        title: "Erreur d'achat",
+        description: error instanceof Error ? error.message : "Une erreur s'est produite lors de l'achat",
         variant: "destructive",
       })
     } finally {
-      setIsLoading(false)
-      setShowDialog(false)
+      setIsProcessing(false)
     }
   }
 
   return (
-    <>
-      <Button onClick={handlePurchase} className="w-full md:w-auto" size="lg">
-        Acheter ce cours
-      </Button>
-
-      <Dialog open={showDialog} onOpenChange={setShowDialog}>
-        <DialogContent>
-          <DialogHeader>
-            <DialogTitle>Confirmer l'achat</DialogTitle>
-            <DialogDescription>
-              Êtes-vous sûr de vouloir acheter ce cours ? Dans une vraie application, un processus de paiement serait
-              intégré ici.
-            </DialogDescription>
-          </DialogHeader>
-          <DialogFooter>
-            <Button variant="outline" onClick={() => setShowDialog(false)}>
-              Annuler
-            </Button>
-            <Button onClick={confirmPurchase} disabled={isLoading}>
-              {isLoading ? "Traitement en cours..." : "Confirmer l'achat"}
-            </Button>
-          </DialogFooter>
-        </DialogContent>
-      </Dialog>
-    </>
+    <Button
+      variant="default"
+      className="w-full"
+      onClick={handlePurchase}
+      disabled={isProcessing}
+    >
+      {isProcessing ? (
+        "Traitement en cours..."
+      ) : (
+        <>
+          <ShoppingCart className="mr-2 h-4 w-4" />
+          Acheter pour {price}€
+        </>
+      )}
+    </Button>
   )
 }

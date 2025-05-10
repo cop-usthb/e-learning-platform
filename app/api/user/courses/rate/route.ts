@@ -18,8 +18,9 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "ID du cours requis" }, { status: 400 })
     }
 
-    if (typeof rating !== "number" || rating < 1 || rating > 5) {
-      return NextResponse.json({ error: "Note invalide (doit être entre 1 et 5)" }, { status: 400 })
+    // Vérifier si la note est null ou si c'est un nombre valide entre 1 et 5
+    if (rating !== null && (typeof rating !== "number" || rating < 1 || rating > 5)) {
+      return NextResponse.json({ error: "Note invalide (doit être entre 1 et 5 ou null)" }, { status: 400 })
     }
 
     const { db } = await connectToDatabase()

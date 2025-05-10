@@ -19,12 +19,12 @@ interface CourseActionsProps {
   userRating?: number
 }
 
-export default function CourseActions({ courseId, userRating = 0 }: CourseActionsProps) {
+export default function CourseActions({ courseId, userRating = null }: CourseActionsProps) {
   const router = useRouter()
   const [isDeleting, setIsDeleting] = useState(false)
   const [showDeleteDialog, setShowDeleteDialog] = useState(false)
   const [showRatingDialog, setShowRatingDialog] = useState(false)
-  const [rating, setRating] = useState(userRating)
+  const [rating, setRating] = useState(userRating || null)
   const [isRating, setIsRating] = useState(false)
 
   const handleDelete = async () => {
@@ -100,11 +100,11 @@ export default function CourseActions({ courseId, userRating = 0 }: CourseAction
     }
   }
 
-  return (
+   return (
     <div className="flex flex-wrap gap-4 mt-6">
       <Button variant="outline" onClick={() => setShowRatingDialog(true)}>
         <Star className="h-4 w-4 mr-2" />
-        {userRating > 0 ? `Modifier ma note (${userRating}/5)` : "Noter ce cours"}
+        {userRating ? `Modifier ma note (${userRating}/5)` : "Noter ce cours"}
       </Button>
 
       <Button variant="destructive" onClick={() => setShowDeleteDialog(true)}>

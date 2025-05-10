@@ -8,9 +8,9 @@ import { Star } from "lucide-react"
 import CourseChapters from "@/components/course-chapters"
 import CourseActions from "@/components/course-actions"
 
-export default async function MyCourseDetailPage({ params }: { params: { id: string } }) {
+export default async function MyCourseDetailPage({ params }: { params: Promise<{ id: string }> }) {
   // Properly await params
-  const id = params.id
+  const { id } = await params
 
   const session = await getServerSession(authOptions)
 
