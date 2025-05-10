@@ -3,18 +3,18 @@ import CourseSearch from "@/components/course-search"
 import CourseFilters from "@/components/course-filters"
 import CourseList from "@/components/course-list"
 import { Skeleton } from "@/components/ui/skeleton"
-
 export default async function CoursesPage({
   searchParams,
 }: {
   searchParams: { [key: string]: string | string[] | undefined }
 }) {
-  // Convertir searchParams en objet standard pour éviter les erreurs d'utilisation synchrone
-  const params = {
-    search: searchParams.search ? String(searchParams.search) : "",
-    skill: searchParams.skill ? String(searchParams.skill) : "",
-    partner: searchParams.partner ? String(searchParams.partner) : "",
-  }
+  // Attendre searchParams avant d'accéder à ses propriétés
+  const params = await searchParams;
+  
+  // Maintenant, utilisez params pour accéder aux valeurs
+  const search = params?.search && typeof params.search === "string" ? params.search : "";
+  const skill = params?.skill && typeof params.skill === "string" ? params.skill : "";
+  const partner = params?.partner && typeof params.partner === "string" ? params.partner : "";
 
   return (
     <div className="container mx-auto px-4 py-8">
