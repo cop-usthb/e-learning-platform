@@ -30,7 +30,7 @@ export function RecommendedCourses({ courses }: RecommendedCoursesProps) {
                     <CardTitle className="text-lg">{course.course}</CardTitle>
                     {course.satisfactionRate && (
                       <Badge variant="outline" className="ml-2">
-                        {course.satisfactionRate}% satisfaction
+                        {course.satisfactionRate}% 
                       </Badge>
                     )}
                   </div>
