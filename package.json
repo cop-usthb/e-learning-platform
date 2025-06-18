@@ -8,7 +8,10 @@
     "start": "next start",
     "lint": "next lint",
     "test-python": "node scripts/test-python.js",
-    "update-profiles": "python userprofil2.py --trigger manual"
+    "update-profiles": "python userprofil2.py --trigger manual",
+    "install-python-deps": "pip install -r requirements.txt",
+    "test-recommendations": "python recommendations.py --user-id test-user --method hybrid --num 5",
+    "test-recommendations-api": "python recommendations.py --user-id 682f8b0001761933b79bc3d3 --method collaborative --num 8 --format json"
   },
   "dependencies": {
     "@auth/core": "latest",
