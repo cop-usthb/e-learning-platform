@@ -1,22 +1,10 @@
-<<<<<<< HEAD
-=======
 import { getServerSession } from "next-auth"
 import { authOptions } from "@/lib/auth"
 import HomeRecommendations from "@/components/HomeRecommendations"
->>>>>>> b4f9f29 (Adding content based local system)
 import { HeroSection } from "@/components/hero-section"
 import { RecommendedCourses } from "@/components/recommended-courses"
 import { getRecommendedCourses } from "@/lib/courses"
 
-<<<<<<< HEAD
-export default async function Home() {
-  const recommendedCourses = await getRecommendedCourses()
-
-  return (
-    <div className="container mx-auto px-4 py-8">
-      <HeroSection />
-      <RecommendedCourses courses={recommendedCourses} />
-=======
 export default async function HomePage() {
   const session = await getServerSession(authOptions)
   
@@ -98,7 +86,6 @@ export default async function HomePage() {
           </div>
         </div>
       </section>
->>>>>>> b4f9f29 (Adding content based local system)
     </div>
   )
 }
