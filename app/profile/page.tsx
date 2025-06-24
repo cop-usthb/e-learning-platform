@@ -1,21 +1,5 @@
 "use client"
 
-<<<<<<< HEAD
-import { useRouter } from "next/navigation"
-import { useEffect, useState } from "react"
-import { ProfileInfo } from "@/components/profile-info"
-import { UserCourses } from "@/components/user-courses"
-import { useToast } from "@/hooks/use-toast"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import { Checkbox } from "@/components/ui/checkbox"
-import { Label } from "@/components/ui/label"
-
-export default function ProfilePage() {
-  const router = useRouter()
-  const { toast } = useToast()
-  const [user, setUser] = useState<any>(null)
-=======
 import { useSession } from "next-auth/react"
 import { useRouter } from "next/navigation"
 import { useEffect, useState } from "react"
@@ -63,90 +47,11 @@ export default function ProfilePage() {
   const router = useRouter()
   const { toast } = useToast()
   const [profile, setProfile] = useState<UserProfile | null>(null)
->>>>>>> b4f9f29 (Adding content based local system)
   const [isLoading, setIsLoading] = useState(true)
   const [availableInterests, setAvailableInterests] = useState<string[]>([])
   const [selectedInterests, setSelectedInterests] = useState<string[]>([])
   const [initialInterests, setInitialInterests] = useState<string[]>([])
   const [isUpdatingInterests, setIsUpdatingInterests] = useState(false)
-<<<<<<< HEAD
-
-  // Fetch the user's current interests and available themes
-  useEffect(() => {
-    const fetchUserData = async () => {
-      try {
-        const response = await fetch("/api/user")
-
-        if (!response.ok) {
-          if (response.status === 401) {
-            router.push("/auth/signin")
-            return
-          }
-          throw new Error("Failed to fetch user data")
-        }
-
-        const userData = await response.json()
-
-        if (userData.success && userData.user) {
-          setUser(userData.user)
-
-          // Set initial interests from user data
-          const userInterests = userData.user.interests || []
-          setSelectedInterests(userInterests)
-          setInitialInterests(userInterests)
-        }
-      } catch (error) {
-        console.error("Error fetching user data:", error)
-        toast({
-          title: "Erreur",
-          description: "Impossible de charger vos données",
-          variant: "destructive",
-        })
-      } finally {
-        setIsLoading(false)
-      }
-    }
-
-    const fetchThemes = async () => {
-      try {
-        const response = await fetch("/api/themes")
-
-        if (!response.ok) {
-          throw new Error(`Error fetching themes: ${response.status}`)
-        }
-
-        const data = await response.json()
-
-        if (data.success && Array.isArray(data.themes)) {
-          setAvailableInterests(data.themes)
-        } else {
-          toast({
-            title: "Erreur",
-            description: "Impossible de charger les thèmes",
-            variant: "destructive",
-          })
-        }
-      } catch (error) {
-        console.error("Error fetching themes:", error)
-        toast({
-          title: "Erreur",
-          description: "Impossible de charger les thèmes",
-          variant: "destructive",
-        })
-      }
-    }
-
-    fetchUserData()
-    fetchThemes()
-  }, [router, toast])
-
-  const handleInterestChange = (interest: string) => {
-    setSelectedInterests((prev) =>
-      prev.includes(interest) ? prev.filter((i) => i !== interest) : [...prev, interest]
-    )
-  }
-
-=======
   const [editingInterests, setEditingInterests] = useState(false)
   const [newInterest, setNewInterest] = useState('')
 
@@ -240,15 +145,10 @@ export default function ProfilePage() {
     setSelectedInterests(prev => prev.filter(i => i !== interest))
   }
 
->>>>>>> b4f9f29 (Adding content based local system)
   const saveInterests = async () => {
     setIsUpdatingInterests(true)
 
     try {
-<<<<<<< HEAD
-      // Call API to update interests
-=======
->>>>>>> b4f9f29 (Adding content based local system)
       const response = await fetch("/api/user/interests", {
         method: "PUT",
         headers: {
@@ -261,11 +161,6 @@ export default function ProfilePage() {
 
       if (result.success) {
         setInitialInterests([...selectedInterests])
-<<<<<<< HEAD
-        toast({
-          title: "Succès",
-          description: "Vos thèmes préférés ont été mis à jour",
-=======
         setEditingInterests(false)
         if (profile) {
           setProfile({ ...profile, interests: selectedInterests })
@@ -273,16 +168,11 @@ export default function ProfilePage() {
         toast({
           title: "Succès",
           description: "Vos centres d'intérêt ont été mis à jour",
->>>>>>> b4f9f29 (Adding content based local system)
         })
       } else {
         toast({
           title: "Erreur",
-<<<<<<< HEAD
-          description: result.message || "Impossible de mettre à jour vos thèmes",
-=======
           description: result.message || "Impossible de mettre à jour vos centres d'intérêt",
->>>>>>> b4f9f29 (Adding content based local system)
           variant: "destructive",
         })
       }
@@ -290,11 +180,7 @@ export default function ProfilePage() {
       console.error("Error saving interests:", error)
       toast({
         title: "Erreur",
-<<<<<<< HEAD
-        description: "Une erreur est survenue lors de la mise à jour de vos thèmes",
-=======
         description: "Une erreur est survenue lors de la mise à jour",
->>>>>>> b4f9f29 (Adding content based local system)
         variant: "destructive",
       })
     } finally {
@@ -302,56 +188,6 @@ export default function ProfilePage() {
     }
   }
 
-<<<<<<< HEAD
-  if (isLoading) {
-    return <div className="container mx-auto py-8">Chargement...</div>
-  }
-
-  return (
-    <div className="container mx-auto py-8">
-      <h1 className="text-3xl font-bold mb-8">Mon profil</h1>
-
-      {user && <ProfileInfo user={user} />}
-
-      <Card className="mb-6">
-        <CardHeader>
-          <CardTitle>Centres d'intérêt</CardTitle>
-          <CardDescription>Gérez vos thèmes préférés</CardDescription>
-        </CardHeader>
-        <CardContent>
-          <div className="border rounded-md p-3 max-h-60 overflow-y-auto">
-            {availableInterests.length > 0 ? (
-              <div className="space-y-2">
-                {availableInterests.map((interest) => (
-                  <div key={interest} className="flex items-center space-x-2">
-                    <Checkbox
-                      id={`interest-${interest}`}
-                      checked={selectedInterests.includes(interest)}
-                      onCheckedChange={() => handleInterestChange(interest)}
-                    />
-                    <Label htmlFor={`interest-${interest}`} className="cursor-pointer">
-                      {interest}
-                    </Label>
-                  </div>
-                ))}
-              </div>
-            ) : (
-              <p className="text-center text-muted-foreground">Aucun thème disponible</p>
-            )}
-          </div>
-        </CardContent>
-        <CardFooter>
-          <Button
-            onClick={saveInterests}
-            disabled={isUpdatingInterests || JSON.stringify(selectedInterests) === JSON.stringify(initialInterests)}
-          >
-            {isUpdatingInterests ? "Enregistrement..." : "Enregistrer les modifications"}
-          </Button>
-        </CardFooter>
-      </Card>
-
-      {user && <UserCourses userId={user.id} />}
-=======
   const cancelEditingInterests = () => {
     setSelectedInterests([...initialInterests])
     setEditingInterests(false)
@@ -706,7 +542,6 @@ export default function ProfilePage() {
           </TabsContent>
         </Tabs>
       </div>
->>>>>>> b4f9f29 (Adding content based local system)
     </div>
   )
 }
