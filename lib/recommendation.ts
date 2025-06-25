@@ -2,7 +2,7 @@
 // Dans une application réelle, cela pourrait être un service Python plus sophistiqué
 
 import { connectToDatabase } from "@/lib/mongodb"
-import { exec } from 'child_process'
+import { spawn, exec } from 'child_process'
 import { promisify } from 'util'
 
 const execAsync = promisify(exec)
@@ -26,21 +26,23 @@ interface PythonResult {
 export interface RecommendedCourse {
   id: number
   _id: string
-  title?: string
-  course?: string
-  description?: string
-  price?: number
-  partner?: string
-  skills?: string[]
-  level?: string
-  theme?: string
-  rating?: number
-  enrollmentCount?: number
+  title: string // Obligatoire au lieu d'optionnel
+  course: string // Obligatoire au lieu d'optionnel
+  description: string // Obligatoire au lieu d'optionnel
+  price: number
+  partner: string
+  skills: string[]
+  level: string
+  theme: string
+  rating: number
+  enrollmentCount: number
   similarity: number
   similarity_percentage: number
+  score_percentage: number // Attribut normalisé Z-Score du script Python
+  method: string
   recommendationRank: number
   course_name_from_python?: string
-  [key: string]: any // Pour les propriétés additionnelles venant de MongoDB
+  [key: string]: any
 }
 
 // Nouveau type pour les recommandations du script hybrid
@@ -48,228 +50,360 @@ interface HybridRecommendation {
   id: string
   title: string
   score: number
+  score_percentage: number // Attribut normalisé Z-Score
   method: string
 }
 
 interface HybridPythonResult {
-  recommendations?: HybridRecommendation[]
+  success: boolean
+  recommendations: HybridRecommendation[]
   error?: string
 }
 
-export async function getRecommendationsForUser(userId: string, interests: string[] = []): Promise<RecommendedCourse[]> {
+export async function getRecommendationsForUser(userId: string, interests: string[] = []): Promise<{
+  recommendations: RecommendedCourse[]
+  executionInfo: any
+}> {
+  let recommendations: RecommendedCourse[] = []
+  let executionInfo = {
+    pythonExecuted: false,
+    pythonSuccess: false,
+    fallbackUsed: false,
+    finalRecommendationsCount: 0,
+    error: null as string | null
+  }
+
   try {
     console.log(`Génération de recommandations pour l'utilisateur: ${userId}`)
+    console.log(`Intérêts formatés:`, interests)
     
-    // 1. Exécuter le script Python hybride pour obtenir des recommandations
+    // Exécuter le script Python hybride
     const pythonResult = await executeHybridPythonRecommendations(userId)
-    
-    if (!pythonResult) {
-      console.log("X Script Python hybride n'a pas retourné de résultat")
-      return []
-    }
+    executionInfo.pythonExecuted = true
 
-    if (pythonResult.error) {
-      console.log("X Erreur Python hybride:", pythonResult.error)
-      return []
-    }
-
-    if (!pythonResult.recommendations || !Array.isArray(pythonResult.recommendations)) {
-      console.log("X Format de recommandations hybrides invalide:", pythonResult)
-      return []
-    }
-
-    if (pythonResult.recommendations.length === 0) {
-      console.log("! Aucune recommandation retournée par le script hybride")
-      return []
-    }
-
-    console.log(`V Script hybride a retourné ${pythonResult.recommendations.length} recommandations valides`)
-
-    const { recommendations } = pythonResult
-    
-    // 2. Extraire les IDs des cours depuis les recommandations hybrides
-    const courseIds = recommendations.map(rec => parseInt(rec.id)).filter(id => !isNaN(id))
-    console.log(`IDs de cours recommandés par le script hybride: ${courseIds}`)
-    console.log(`Scores:`, recommendations.map(rec => `${rec.id}: ${Math.round(rec.score * 100)}%`))
-
-    // 3. Récupérer les détails complets des cours depuis MongoDB
-    const { db } = await connectToDatabase()
-    const courses = await db
-      .collection("Course")
-      .find({ id: { $in: courseIds } })
-      .toArray()
-
-    // 4. Enrichir les cours avec les scores dans l'ordre des recommandations
-    const enrichedCourses: RecommendedCourse[] = recommendations.map((hybridRec, index) => {
-      const courseId = parseInt(hybridRec.id)
-      const course = courses.find(c => c.id === courseId)
+    if (pythonResult.success && pythonResult.recommendations && pythonResult.recommendations.length > 0) {
+      executionInfo.pythonSuccess = true
       
-      if (course) {
-        // Nettoyer le cours (supprimer _id MongoDB)
-        const { _id, ...cleanCourse } = course
+      // Extraire les IDs des cours depuis les recommandations Python
+      const courseIds = pythonResult.recommendations
+        .map((rec: any) => parseInt(rec.id))
+        .filter((id: number) => !isNaN(id))
+
+      if (courseIds.length > 0) {
+        // Récupérer les détails des cours depuis MongoDB
+        const { db } = await connectToDatabase()
+        const courses = await db.collection("Course").find({
+          id: { $in: courseIds }
+        }).toArray()
+
+        // Créer un mapping des cours par ID
+        const courseMap = new Map(courses.map(course => [course.id, course]))
+
+        // Enrichir les recommandations avec les détails des cours
+        const enrichedCourses: RecommendedCourse[] = []
         
-        return {
-          ...cleanCourse,
-          id: course.id || courseId,
-          _id: _id.toString(),
-          title: course.title || course.name || course.courseName || hybridRec.title,
-          course: course.course || course.title || course.name || hybridRec.title,
-          description: course.description || `Cours recommandé avec ${Math.round(hybridRec.score * 100)}% de compatibilité`,
-          price: course.price || 0,
-          partner: course.partner || 'Partenaire inconnu',
-          skills: course.skills || [],
-          level: course.level || course.difficulty || 'Non spécifié',
-          theme: course.theme || 'Général',
-          rating: course.rating || 0,
-          enrollmentCount: course.enrollmentCount || 0,
-          similarity: hybridRec.score,
-          similarity_percentage: Math.round(hybridRec.score * 100),
-          recommendationRank: index + 1,
-          course_name_from_python: hybridRec.title,
-          method: hybridRec.method // Ajouter la méthode utilisée
+        for (let index = 0; index < pythonResult.recommendations.length; index++) {
+          const hybridRec = pythonResult.recommendations[index]
+          const courseId = parseInt(hybridRec.id)
+          const course = courseMap.get(courseId)
+          
+          if (course) {
+            const { _id, ...cleanCourse } = course
+            
+            // Créer l'objet avec tous les champs requis
+            const enrichedCourse: RecommendedCourse = {
+              // Copier les champs du cours existant
+              ...cleanCourse,
+              // Champs obligatoires avec valeurs par défaut garanties
+              id: course.id || courseId,
+              _id: _id.toString(),
+              title: course.course || course.title || course.name || hybridRec.title || `Cours ${courseId}`,
+              course: course.course || course.title || course.name || hybridRec.title || `Cours ${courseId}`,
+              description: course.description || course.what_you_will_learn || `Cours recommandé`,
+              price: course.price || 0,
+              partner: course.partner || course.university || 'Partenaire inconnu',
+              skills: course.skills || [],
+              level: course.level || course.difficulty || 'Non spécifié',
+              theme: course.theme || course.subject || 'Général',
+              rating: course.rating || 0,
+              enrollmentCount: course.enrollmentCount || 0,
+              // CORRECTION : Utiliser score_percentage pour TOUS les attributs de score
+              similarity: hybridRec.score_percentage / 100 || 0, // ✅ Convertir en décimal pour similarity
+              similarity_percentage: hybridRec.score_percentage || 0, // ✅ Utiliser score_percentage
+              score_percentage: hybridRec.score_percentage || 0,      // ✅ Utiliser score_percentage
+              method: hybridRec.method || "hybrid",
+              recommendationRank: index + 1,
+              course_name_from_python: hybridRec.title
+            }
+            
+            enrichedCourses.push(enrichedCourse)
+          }
         }
-      } else {
-        // Si le cours n'existe pas dans MongoDB, créer un objet basique mais complet
-        console.warn(`Cours ${courseId} non trouvé dans MongoDB`)
-        return {
-          id: courseId,
-          _id: courseId.toString(),
-          title: hybridRec.title,
-          course: hybridRec.title,
-          description: `Cours recommandé avec ${Math.round(hybridRec.score * 100)}% de compatibilité`,
-          price: 0,
-          partner: 'Partenaire inconnu',
-          skills: [],
-          level: 'Non spécifié',
-          theme: 'Général',
-          rating: 0,
-          enrollmentCount: 0,
-          similarity: hybridRec.score,
-          similarity_percentage: Math.round(hybridRec.score * 100),
-          recommendationRank: index + 1,
-          course_name_from_python: hybridRec.title,
-          method: hybridRec.method
+
+        recommendations = enrichedCourses
+        executionInfo.finalRecommendationsCount = recommendations.length
+
+        console.log(`✅ Script hybride a retourné ${recommendations.length} recommandations valides`)
+        console.log('📊 Détails des scores:', recommendations.map(r => 
+          `ID: ${r.id}, score_percentage: ${r.score_percentage}%, similarity_percentage: ${r.similarity_percentage}%, method: ${r.method}, title: ${r.title?.substring(0, 30)}...`
+        ))
+
+        if (recommendations.length > 0) {
+          return { recommendations, executionInfo }
         }
       }
-    })
+    }
 
-    console.log(`Recommandations finales: ${enrichedCourses.length} cours`)
-    console.log('Ordre et pourcentages:', enrichedCourses.map(c => `#${c.recommendationRank}: ${c.similarity_percentage}% (${c.method})`))
-    
-    return enrichedCourses
-    
+    // Si le script Python a échoué, utiliser le fallback
+    throw new Error("Python script returned no valid recommendations")
+
   } catch (error) {
-    console.error("Erreur lors de la génération des recommandations:", error)
-    return []
+    console.error("Error in hybrid recommendations:", error)
+    executionInfo.error = error instanceof Error ? error.message : String(error)
+    executionInfo.fallbackUsed = true
+
+    // Utiliser les recommandations de secours
+    try {
+      const fallbackRecommendations = await getFallbackRecommendations(interests)
+      
+      recommendations = fallbackRecommendations.map((course, index) => ({
+        ...course,
+        // CORRECTION : Utiliser score_percentage pour TOUS les attributs
+        similarity: (80 - (index * 2.5)) / 100, // ✅ Convertir en décimal pour similarity
+        similarity_percentage: 80 - (index * 2.5), // ✅ Valeur en pourcentage
+        score_percentage: 80 - (index * 2.5), // ✅ Valeur en pourcentage
+        method: "fallback",
+        recommendationRank: index + 1
+      }))
+
+      executionInfo.finalRecommendationsCount = recommendations.length
+      console.log('📊 Recommandations fallback avec score_percentage:', recommendations.map(r => 
+        `ID: ${r.id}, score_percentage: ${r.score_percentage}%, title: ${r.title?.substring(0, 30)}...`
+      ))
+    } catch (fallbackError) {
+      console.error("Fallback recommendations also failed:", fallbackError)
+      executionInfo.error = `Primary and fallback failed: ${executionInfo.error} | ${fallbackError}`
+    }
   }
+
+  return { recommendations, executionInfo }
 }
 
-async function executeHybridPythonRecommendations(userId: string): Promise<HybridPythonResult | null> {
-  try {
-    console.log(`Exécution du script Python hybride pour l'utilisateur: ${userId}`)
+async function executeHybridPythonRecommendations(userId: string): Promise<HybridPythonResult> {
+  return new Promise((resolve) => {
+    console.log('🐍 Démarrage du script Python hybride...')
     
-    const startTime = Date.now()
-    
-    // Nouvelle commande pour le script hybride
-    const command = `python recommendation_script.py "${userId}" course --k 12 --lambda_param 0.7 --verbose`
-    
-    console.log(`Commande exécutée: ${command}`)
-    
-    const { stdout, stderr } = await execAsync(command, {
-      timeout: 120000, // 2 minutes pour le script plus complexe
-      maxBuffer: 4 * 1024 * 1024, // 4MB pour plus de données
+    const pythonProcess = spawn('python', [
+      'recommendation_script.py',
+      userId,
+      'course',
+      '--k', '15',
+      '--lambda_param', '0.7',
+      '--verbose'
+    ], {
       cwd: process.cwd(),
-      encoding: 'utf8'
+      stdio: ['pipe', 'pipe', 'pipe']
+    })
+
+    let stdout = ''
+    let stderr = ''
+
+    pythonProcess.stdout.on('data', (data) => {
+      stdout += data.toString()
+    })
+
+    pythonProcess.stderr.on('data', (data) => {
+      stderr += data.toString()
+    })
+
+    pythonProcess.on('close', (code) => {
+      console.log(`🐍 Script Python terminé avec le code: ${code}`)
+      console.log(`📤 Sortie stdout (${stdout.length} caractères):`, stdout.substring(0, 500))
+      console.log(`📤 Sortie stderr (${stderr.length} caractères):`, stderr.substring(0, 500))
+      
+      // Accepter le code 0 ou null (parfois le processus se termine correctement mais avec null)
+      if ((code === 0 || code === null) && stdout.trim()) {
+        try {
+          // Extraire le JSON de la sortie
+          const lines = stdout.trim().split('\n')
+          let jsonStartIndex = -1
+          
+          // Chercher la ligne qui commence par '['
+          for (let i = lines.length - 1; i >= 0; i--) {
+            const line = lines[i].trim()
+            if (line.startsWith('[')) {
+              jsonStartIndex = i
+              break
+            }
+          }
+          
+          if (jsonStartIndex === -1) {
+            // Essayer de trouver un JSON valide dans la sortie
+            const jsonMatch = stdout.match(/\[[\s\S]*\]/);
+            if (jsonMatch) {
+              const recommendations = JSON.parse(jsonMatch[0])
+              
+              const validRecommendations = recommendations.filter((rec: any) => 
+                rec.id && 
+                typeof rec.score_percentage === 'number' && 
+                rec.score_percentage >= 0 && 
+                rec.score_percentage <= 100
+              )
+
+              console.log(`✅ Script Python retourné ${validRecommendations.length} recommandations valides avec score_percentage`)
+
+              return resolve({
+                success: true,
+                recommendations: validRecommendations
+              })
+            }
+            
+            throw new Error('No JSON array found in output')
+          }
+          
+          const jsonOutput = lines.slice(jsonStartIndex).join('\n').trim()
+          const recommendations = JSON.parse(jsonOutput)
+          
+          // Valider que chaque recommandation a les attributs nécessaires
+          const validRecommendations = recommendations.filter((rec: any) => 
+            rec.id && 
+            typeof rec.score_percentage === 'number' && 
+            rec.score_percentage >= 0 && 
+            rec.score_percentage <= 100
+          )
+
+          console.log(`✅ Script Python retourné ${validRecommendations.length} recommandations valides avec score_percentage`)
+
+          resolve({
+            success: true,
+            recommendations: validRecommendations
+          })
+        } catch (parseError) {
+          console.error("❌ Failed to parse Python output:", parseError)
+          console.error("Stdout complet:", stdout)
+          resolve({
+            success: false,
+            recommendations: [],
+            error: `JSON parse error: ${parseError}`
+          })
+        }
+      } else {
+        console.error(`❌ Python script failed with code ${code}`)
+        console.error("Stderr:", stderr)
+        resolve({
+          success: false,
+          recommendations: [],
+          error: `Python script exit code: ${code}, stderr: ${stderr}`
+        })
+      }
+    })
+
+    pythonProcess.on('error', (error) => {
+      console.error("❌ Failed to start Python process:", error)
+      resolve({
+        success: false,
+        recommendations: [],
+        error: `Process error: ${error.message}`
+      })
+    })
+
+    // Timeout après 30 secondes
+    setTimeout(() => {
+      console.log('⏰ Timeout du script Python après 30s')
+      pythonProcess.kill()
+      resolve({
+        success: false,
+        recommendations: [],
+        error: "Python script timeout (30s)"
+      })
+    }, 30000)
+  })
+}
+
+async function getFallbackRecommendations(interests: string[]): Promise<RecommendedCourse[]> {
+  try {
+    const { db } = await connectToDatabase()
+    
+    let query: any = {}
+    
+    // Si l'utilisateur a des intérêts, les utiliser pour le filtrage
+    if (interests && interests.length > 0) {
+      console.log('🔍 Recherche avec intérêts:', interests)
+      
+      // Convertir "Programing & Software Engineering" en mots-clés recherchables
+      const searchTerms = interests.flatMap(interest => 
+        interest.split(/[&,\s]+/).map(term => term.trim()).filter(term => term.length > 0)
+      )
+      
+      console.log('🔍 Termes de recherche:', searchTerms)
+      
+      const interestRegex = searchTerms.map(term => new RegExp(term, 'i'))
+      query = {
+        $or: [
+          { theme: { $in: interestRegex } },
+          { subject: { $in: interestRegex } },
+          { course: { $in: interestRegex } },
+          { partner: { $in: interestRegex } },
+          { description: { $in: interestRegex } },
+          { what_you_will_learn: { $in: interestRegex } }
+        ]
+      }
+    }
+    
+    // Récupérer des cours populaires
+    const courses = await db
+      .collection("Course")
+      .find(query)
+      .sort({ rating: -1, enrollmentCount: -1 })
+      .limit(12)
+      .toArray()
+    
+    // Si pas assez de cours avec les intérêts, compléter avec des cours populaires
+    if (courses.length < 12) {
+      const additionalCourses = await db
+        .collection("Course")
+        .find({ _id: { $nin: courses.map(c => c._id) } })
+        .sort({ rating: -1, enrollmentCount: -1 })
+        .limit(12 - courses.length)
+        .toArray()
+      
+      courses.push(...additionalCourses)
+    }
+    
+    // Créer les cours avec tous les champs requis
+    const coursesWithRating: RecommendedCourse[] = courses.map((course, index) => {
+      const { _id, ...cleanCourse } = course
+      
+      return {
+        ...cleanCourse,
+        // Champs obligatoires avec valeurs par défaut garanties
+        id: course.id || index,
+        _id: _id.toString(),
+        title: course.course || course.title || course.name || `Cours ${index + 1}`,
+        course: course.course || course.title || course.name || `Cours ${index + 1}`,
+        description: course.description || course.what_you_will_learn || 'Description non disponible',
+        price: course.price || 0,
+        partner: course.partner || course.university || 'Partenaire inconnu',
+        skills: course.skills || [],
+        level: course.level || course.difficulty || 'Non spécifié',
+        theme: course.theme || course.subject || 'Général',
+        rating: course.rating || 0,
+        enrollmentCount: course.enrollmentCount || 0,
+        similarity: 0,
+        similarity_percentage: 0, // Sera calculé dans getRecommendationsForUser
+        score_percentage: 0, // Sera calculé dans getRecommendationsForUser
+        method: "fallback",
+        recommendationRank: index + 1
+      }
     })
     
-    const executionTime = Date.now() - startTime
-    console.log(`Script Python hybride exécuté en ${executionTime}ms`)
+    console.log(`📚 Fallback: ${coursesWithRating.length} cours retournés`)
     
-    if (stderr) {
-      console.log('Messages Python hybride (stderr):', stderr.substring(0, 500) + '...')
-    }
-    
-    if (!stdout || !stdout.trim()) {
-      console.error('X Stdout vide - Script hybride probablement interrompu')
-      console.error('Stderr complet:', stderr)
-      throw new Error('Script Python hybride interrompu - aucune sortie JSON')
-    }
-    
-    // Extraire le JSON de la sortie (le JSON est à la fin après les logs)
-    let jsonOutput: string
-    try {
-      // Chercher le dernier bloc JSON valide dans la sortie
-      const lines = stdout.trim().split('\n')
-      
-      // Trouver la ligne qui commence par '[' (début du JSON array)
-      let jsonStartIndex = -1
-      for (let i = lines.length - 1; i >= 0; i--) {
-        const line = lines[i].trim()
-        if (line.startsWith('[')) {
-          jsonStartIndex = i
-          break
-        }
-      }
-      
-      if (jsonStartIndex === -1) {
-        throw new Error('Aucun JSON array trouvé dans la sortie')
-      }
-      
-      // Extraire toutes les lignes depuis le début du JSON jusqu'à la fin
-      jsonOutput = lines.slice(jsonStartIndex).join('\n').trim()
-      
-      console.log('JSON extrait:', jsonOutput.substring(0, 200) + '...')
-      
-    } catch (extractError) {
-      console.error('Erreur lors de l\'extraction du JSON:', extractError)
-      console.error('Sortie complète:', stdout)
-      throw new Error('Impossible d\'extraire le JSON de la sortie')
-    }
-    
-    // Parser le JSON extrait
-    let recommendations: HybridRecommendation[]
-    try {
-      recommendations = JSON.parse(jsonOutput)
-      
-      // Vérifier que c'est bien un array
-      if (!Array.isArray(recommendations)) {
-        throw new Error('Le JSON parsé n\'est pas un array')
-      }
-      
-    } catch (parseError) {
-      console.error('Erreur de parsing JSON hybride:', parseError)
-      console.error('JSON à parser:', jsonOutput)
-      throw new Error('Format JSON invalide')
-    }
-    
-    // Construire le résultat final
-    const result: HybridPythonResult = {
-      recommendations: recommendations
-    }
-    
-    console.log(`Script hybride a retourné ${result.recommendations?.length || 0} recommandations`)
-    console.log('Top recommendations:', result.recommendations?.slice(0, 3).map(r => 
-      `ID: ${r.id}, Titre: ${r.title}, Score: ${Math.round(r.score * 100)}%, Méthode: ${r.method}`
-    ))
-    
-    return result
+    return coursesWithRating
     
   } catch (error) {
-    console.error('X Erreur lors de l\'exécution du script Python hybride:', error)
-
-    // Plus de détails sur l'erreur
-    if (error instanceof Error) {
-      console.error('Type d\'erreur:', error.name)
-      console.error('Message:', error.message)
-      if ('code' in error) {
-        console.error('Code d\'erreur:', (error as any).code)
-      }
-      if ('signal' in error) {
-        console.error('Signal:', (error as any).signal)
-      }
-    }
-    
-    return null
+    console.error("Error in fallback recommendations:", error)
+    return []
   }
 }
 
@@ -288,73 +422,5 @@ export async function testPythonAvailability(): Promise<boolean> {
       console.error('Python non disponible')
       return false
     }
-  }
-}
-
-async function getFallbackRecommendations(interests: string[]): Promise<RecommendedCourse[]> {
-  try {
-    const { db } = await connectToDatabase()
-    
-    let query: any = {}
-    
-    // Si l'utilisateur a des intérêts, les utiliser pour le filtrage
-    if (interests && interests.length > 0) {
-      query.theme = { $in: interests }
-    }
-    
-    // Récupérer des cours avec une préférence pour ceux qui correspondent aux intérêts
-    const courses = await db
-      .collection("Course")
-      .find(query)
-      .sort({ rating: -1, enrollmentCount: -1 })
-      .limit(12) // Changé de 10 à 12
-      .toArray()
-    
-    // Si pas assez de cours avec les intérêts, compléter avec des cours populaires
-    if (courses.length < 12) { // Changé de 10 à 12
-      const additionalCourses = await db
-        .collection("Course")
-        .find({ _id: { $nin: courses.map(c => c._id) } })
-        .sort({ rating: -1, enrollmentCount: -1 })
-        .limit(12 - courses.length) // Changé pour compléter jusqu'à 12
-        .toArray()
-      
-      courses.push(...additionalCourses)
-    }
-    
-    // Ajouter des scores de similarité réalistes et s'assurer que tous les champs requis sont présents
-    const coursesWithRating: RecommendedCourse[] = courses.map((course, index) => {
-      const { _id, ...cleanCourse } = course
-      // Scores décroissants de 80% à 50% pour 12 cours (au lieu de 55% pour 10)
-      const similarity = 0.80 - (index * 0.025)
-      
-      return {
-        ...cleanCourse,
-        id: course.id || index,
-        _id: _id.toString(),
-        title: course.title || course.name || course.courseName || `Cours ${index + 1}`,
-        course: course.course || course.title || course.name || `Cours ${index + 1}`,
-        description: course.description || 'Description non disponible',
-        price: course.price || 0,
-        partner: course.partner || 'Partenaire inconnu',
-        skills: course.skills || [],
-        level: course.level || course.difficulty || 'Non spécifié',
-        theme: course.theme || 'Général',
-        rating: course.rating || 0,
-        enrollmentCount: course.enrollmentCount || 0,
-        similarity: Math.max(similarity, 0.50), // Minimum 50% au lieu de 55%
-        similarity_percentage: Math.round(Math.max(similarity, 0.50) * 100),
-        recommendationRank: index + 1
-      }
-    })
-    
-    console.log(`Fallback: ${coursesWithRating.length} cours retournés`)
-    console.log('Pourcentages fallback:', coursesWithRating.map(c => `${c.similarity_percentage}%`))
-    
-    return coursesWithRating
-    
-  } catch (error) {
-    console.error("Erreur dans getFallbackRecommendations:", error)
-    return []
   }
 }

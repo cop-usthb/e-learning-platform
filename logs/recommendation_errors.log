@@ -346,3 +346,811 @@
 2025-06-25 14:32:47,513 - ERROR - Error fetching title for 6828d30acf45ad84b675fcbf: invalid literal for int() with base 10: '6828d30acf45ad84b675fcbf'
 2025-06-25 14:32:47,513 - ERROR - Error fetching title for 6828d30acf45ad84b675fd97: invalid literal for int() with base 10: '6828d30acf45ad84b675fd97'
 2025-06-25 14:32:48,010 - INFO - Total candidates before MMR: 24
+2025-06-25 19:31:15,553 - ERROR - Warning: File not found at '../Articles-Lib/user_profiles_articles.csv'.
+2025-06-25 19:31:16,007 - ERROR - Warning: File not found at '../Articles-Lib/articles_profiles.csv'.
+2025-06-25 19:31:16,124 - ERROR - Error loading model: [Errno 2] No such file or directory: '../Articles-Lib/gnn_model/lightgcn_model.pth'
+2025-06-25 19:31:16,171 - ERROR - Error generating recommendations: 'HybridRecommendationSystem' object has no attribute 'get_item_title'
+2025-06-25 19:33:06,920 - ERROR - Error connecting to MongoDB: The resolution lifetime expired after 20.002 seconds: Server Do53:8.8.8.8@53 answered The DNS operation timed out.; Server Do53:8.8.4.4@53 answered The DNS operation timed out.; Server Do53:192.168.5.64@53 answered The DNS operation timed out.; Server Do53:8.8.8.8@53 answered The DNS operation timed out.; Server Do53:8.8.4.4@53 answered The DNS operation timed out.; Server Do53:192.168.5.64@53 answered The DNS operation timed out.; Server Do53:8.8.8.8@53 answered The DNS operation timed out.; Server Do53:8.8.4.4@53 answered The DNS operation timed out.; Server Do53:192.168.5.64@53 answered The DNS operation timed out.; Server Do53:8.8.8.8@53 answered The DNS operation timed out.
+2025-06-25 19:33:06,921 - ERROR - Initialization failed: The resolution lifetime expired after 20.002 seconds: Server Do53:8.8.8.8@53 answered The DNS operation timed out.; Server Do53:8.8.4.4@53 answered The DNS operation timed out.; Server Do53:192.168.5.64@53 answered The DNS operation timed out.; Server Do53:8.8.8.8@53 answered The DNS operation timed out.; Server Do53:8.8.4.4@53 answered The DNS operation timed out.; Server Do53:192.168.5.64@53 answered The DNS operation timed out.; Server Do53:8.8.8.8@53 answered The DNS operation timed out.; Server Do53:8.8.4.4@53 answered The DNS operation timed out.; Server Do53:192.168.5.64@53 answered The DNS operation timed out.; Server Do53:8.8.8.8@53 answered The DNS operation timed out.
+2025-06-25 19:33:06,922 - INFO - Generating course recommendations for user 682f8b0001761933b79bc3d3...
+2025-06-25 19:33:06,922 - ERROR - Error getting GNN recommendations: 'HybridRecommendationSystem' object has no attribute 'model'
+2025-06-25 19:33:06,922 - ERROR - Error getting content-based recommendations: 'HybridRecommendationSystem' object has no attribute 'user_course_emb_df'
+2025-06-25 19:33:06,923 - INFO - GNN recommendations: 0
+2025-06-25 19:33:06,923 - INFO - Content-based recommendations: 0
+2025-06-25 19:33:06,923 - INFO - Total candidates before MMR: 0
+2025-06-25 19:33:06,924 - ERROR - Error generating recommendations: 'HybridRecommendationSystem' object has no attribute 'get_user_embedding'
+2025-06-25 19:33:06,925 - ERROR - Error getting GNN recommendations: 'HybridRecommendationSystem' object has no attribute 'model'
+2025-06-25 19:36:15,305 - INFO - Connected to MongoDB successfully.
+2025-06-25 19:36:15,306 - INFO - Loading data from MongoDB...
+2025-06-25 19:36:16,980 - INFO - Loaded data: 20 users, 1133 courses, 3513 articles
+2025-06-25 19:36:28,373 - INFO - Created graph with 30 edges
+2025-06-25 19:36:28,378 - INFO - Loading pre-trained embeddings...
+2025-06-25 19:36:28,479 - INFO - Loaded ../e-learning-platform/user_profiles.csv: 20 rows, 529 columns
+2025-06-25 19:36:28,480 - ERROR - Warning: File not found at 'user_profiles_articles.csv'.
+2025-06-25 19:36:28,911 - INFO - Loaded ../e-learning-platform/item_vectors_onehot.csv: 1133 rows, 337 columns
+2025-06-25 19:36:28,912 - ERROR - Warning: File not found at 'articles_profiles.csv'.
+2025-06-25 19:36:28,925 - INFO - Pre-trained embeddings loaded successfully.
+2025-06-25 19:36:28,926 - INFO - Initializing GNN model...
+2025-06-25 19:36:29,034 - INFO - Created 1133 course embeddings
+2025-06-25 19:36:29,035 - ERROR - Error loading model: [Errno 2] No such file or directory: 'gnn_model/lightgcn_model.pth'
+2025-06-25 19:36:29,035 - INFO - Continuing with randomly initialized GNN model weights
+2025-06-25 19:36:29,035 - INFO - Generating course recommendations for user 682f8b0001761933b79bc3d3...
+2025-06-25 19:36:29,098 - INFO - GNN recommendations: 15
+2025-06-25 19:36:29,098 - INFO - Content-based recommendations: 15
+2025-06-25 19:36:29,098 - ERROR - Error fetching title for 6828d30acf45ad84b675fee9: invalid literal for int() with base 10: '6828d30acf45ad84b675fee9'
+2025-06-25 19:36:29,098 - ERROR - Error fetching title for 6828d30acf45ad84b675fc16: invalid literal for int() with base 10: '6828d30acf45ad84b675fc16'
+2025-06-25 19:36:29,098 - ERROR - Error fetching title for 6828d30acf45ad84b675ff1f: invalid literal for int() with base 10: '6828d30acf45ad84b675ff1f'
+2025-06-25 19:36:29,099 - ERROR - Error fetching title for 6828d30acf45ad84b675fc23: invalid literal for int() with base 10: '6828d30acf45ad84b675fc23'
+2025-06-25 19:36:29,099 - ERROR - Error fetching title for 6828d30acf45ad84b675fd2a: invalid literal for int() with base 10: '6828d30acf45ad84b675fd2a'
+2025-06-25 19:36:29,099 - ERROR - Error fetching title for 6828d30acf45ad84b675fc63: invalid literal for int() with base 10: '6828d30acf45ad84b675fc63'
+2025-06-25 19:36:29,099 - ERROR - Error fetching title for 6828d30acf45ad84b675fdd0: invalid literal for int() with base 10: '6828d30acf45ad84b675fdd0'
+2025-06-25 19:36:29,099 - ERROR - Error fetching title for 6828d30acf45ad84b675fcaf: invalid literal for int() with base 10: '6828d30acf45ad84b675fcaf'
+2025-06-25 19:36:29,099 - ERROR - Error fetching title for 6828d30acf45ad84b675feda: invalid literal for int() with base 10: '6828d30acf45ad84b675feda'
+2025-06-25 19:36:29,099 - ERROR - Error fetching title for 6828d30acf45ad84b675fc26: invalid literal for int() with base 10: '6828d30acf45ad84b675fc26'
+2025-06-25 19:36:29,099 - ERROR - Error fetching title for 6828d30acf45ad84b675fdf6: invalid literal for int() with base 10: '6828d30acf45ad84b675fdf6'
+2025-06-25 19:36:29,099 - ERROR - Error fetching title for 6828d30acf45ad84b675fdc8: invalid literal for int() with base 10: '6828d30acf45ad84b675fdc8'
+2025-06-25 19:36:29,099 - ERROR - Error fetching title for 6828d30acf45ad84b675fc6b: invalid literal for int() with base 10: '6828d30acf45ad84b675fc6b'
+2025-06-25 19:36:29,099 - ERROR - Error fetching title for 6828d30acf45ad84b675fbc6: invalid literal for int() with base 10: '6828d30acf45ad84b675fbc6'
+2025-06-25 19:36:29,099 - ERROR - Error fetching title for 6828d30dcf45ad84b675ffb0: invalid literal for int() with base 10: '6828d30dcf45ad84b675ffb0'
+2025-06-25 19:36:30,169 - INFO - Total candidates before MMR: 30
+2025-06-25 19:37:53,407 - INFO - Connected to MongoDB successfully.
+2025-06-25 19:37:53,408 - INFO - Loading data from MongoDB...
+2025-06-25 19:37:54,457 - INFO - Loaded data: 20 users, 1133 courses, 3513 articles
+2025-06-25 19:38:01,830 - INFO - Created graph with 30 edges
+2025-06-25 19:38:01,838 - INFO - Loading pre-trained embeddings...
+2025-06-25 19:38:02,029 - INFO - Loaded ../e-learning-platform/user_profiles.csv: 20 rows, 529 columns
+2025-06-25 19:38:02,030 - ERROR - Warning: File not found at 'user_profiles_articles.csv'.
+2025-06-25 19:38:02,845 - INFO - Loaded ../e-learning-platform/item_vectors_onehot.csv: 1133 rows, 337 columns
+2025-06-25 19:38:02,845 - ERROR - Warning: File not found at 'articles_profiles.csv'.
+2025-06-25 19:38:02,861 - INFO - Pre-trained embeddings loaded successfully.
+2025-06-25 19:38:02,861 - INFO - Initializing GNN model...
+2025-06-25 19:38:02,994 - INFO - Created 1133 course embeddings
+2025-06-25 19:38:02,994 - ERROR - Error loading model: [Errno 2] No such file or directory: 'gnn_model/lightgcn_model.pth'
+2025-06-25 19:38:02,994 - INFO - Continuing with randomly initialized GNN model weights
+2025-06-25 19:38:02,995 - INFO - Generating course recommendations for user 682f8b0001761933b79bc3d3...
+2025-06-25 19:38:03,048 - INFO - GNN recommendations: 12
+2025-06-25 19:38:03,048 - INFO - Content-based recommendations: 12
+2025-06-25 19:38:03,049 - ERROR - Error fetching title for 6828d30acf45ad84b675ff1f: invalid literal for int() with base 10: '6828d30acf45ad84b675ff1f'
+2025-06-25 19:38:03,049 - ERROR - Error fetching title for 6828d30acf45ad84b675fc16: invalid literal for int() with base 10: '6828d30acf45ad84b675fc16'
+2025-06-25 19:38:03,049 - ERROR - Error fetching title for 6828d30acf45ad84b675fee9: invalid literal for int() with base 10: '6828d30acf45ad84b675fee9'
+2025-06-25 19:38:03,049 - ERROR - Error fetching title for 6828d30acf45ad84b675fef3: invalid literal for int() with base 10: '6828d30acf45ad84b675fef3'
+2025-06-25 19:38:03,049 - ERROR - Error fetching title for 6828d30acf45ad84b675fbbd: invalid literal for int() with base 10: '6828d30acf45ad84b675fbbd'
+2025-06-25 19:38:03,049 - ERROR - Error fetching title for 6828d30acf45ad84b675fc8f: invalid literal for int() with base 10: '6828d30acf45ad84b675fc8f'
+2025-06-25 19:38:03,049 - ERROR - Error fetching title for 6828d30acf45ad84b675fe4e: invalid literal for int() with base 10: '6828d30acf45ad84b675fe4e'
+2025-06-25 19:38:03,049 - ERROR - Error fetching title for 6828d30acf45ad84b675fd91: invalid literal for int() with base 10: '6828d30acf45ad84b675fd91'
+2025-06-25 19:38:03,049 - ERROR - Error fetching title for 6828d30acf45ad84b675fcd0: invalid literal for int() with base 10: '6828d30acf45ad84b675fcd0'
+2025-06-25 19:38:03,049 - ERROR - Error fetching title for 6828d30acf45ad84b675fd99: invalid literal for int() with base 10: '6828d30acf45ad84b675fd99'
+2025-06-25 19:38:03,049 - ERROR - Error fetching title for 6828d30dcf45ad84b675ffc6: invalid literal for int() with base 10: '6828d30dcf45ad84b675ffc6'
+2025-06-25 19:38:03,049 - ERROR - Error fetching title for 6828d30acf45ad84b675fdb1: invalid literal for int() with base 10: '6828d30acf45ad84b675fdb1'
+2025-06-25 19:38:03,849 - INFO - Total candidates before MMR: 24
+2025-06-25 19:40:16,607 - INFO - Connected to MongoDB successfully.
+2025-06-25 19:40:16,608 - INFO - Loading data from MongoDB...
+2025-06-25 19:40:20,883 - INFO - Loaded data: 20 users, 1133 courses, 3513 articles
+2025-06-25 19:40:29,842 - INFO - Created graph with 30 edges
+2025-06-25 19:40:29,848 - INFO - Loading pre-trained embeddings...
+2025-06-25 19:40:29,986 - INFO - Loaded ../e-learning-platform/user_profiles.csv: 20 rows, 529 columns
+2025-06-25 19:40:29,986 - ERROR - Warning: File not found at 'user_profiles_articles.csv'.
+2025-06-25 19:40:30,589 - INFO - Loaded ../e-learning-platform/item_vectors_onehot.csv: 1133 rows, 337 columns
+2025-06-25 19:40:30,590 - ERROR - Warning: File not found at 'articles_profiles.csv'.
+2025-06-25 19:40:30,614 - INFO - Pre-trained embeddings loaded successfully.
+2025-06-25 19:40:30,614 - INFO - Initializing GNN model...
+2025-06-25 19:40:30,759 - INFO - Created 1133 course embeddings
+2025-06-25 19:40:30,759 - ERROR - Error loading model: [Errno 2] No such file or directory: 'gnn_model/lightgcn_model.pth'
+2025-06-25 19:40:30,759 - INFO - Continuing with randomly initialized GNN model weights
+2025-06-25 19:40:30,759 - INFO - Generating course recommendations for user 682f8b0001761933b79bc3d3...
+2025-06-25 19:40:30,824 - INFO - GNN recommendations: 12
+2025-06-25 19:40:30,824 - INFO - Content-based recommendations: 12
+2025-06-25 19:40:30,824 - ERROR - Error fetching title for 6828d30acf45ad84b675ff1f: invalid literal for int() with base 10: '6828d30acf45ad84b675ff1f'
+2025-06-25 19:40:30,824 - ERROR - Error fetching title for 6828d30acf45ad84b675fc16: invalid literal for int() with base 10: '6828d30acf45ad84b675fc16'
+2025-06-25 19:40:30,824 - ERROR - Error fetching title for 6828d30acf45ad84b675fee9: invalid literal for int() with base 10: '6828d30acf45ad84b675fee9'
+2025-06-25 19:40:30,824 - ERROR - Error fetching title for 6828d30acf45ad84b675fdc8: invalid literal for int() with base 10: '6828d30acf45ad84b675fdc8'
+2025-06-25 19:40:30,824 - ERROR - Error fetching title for 6828d30acf45ad84b675fec4: invalid literal for int() with base 10: '6828d30acf45ad84b675fec4'
+2025-06-25 19:40:30,824 - ERROR - Error fetching title for 6828d30acf45ad84b675fdfe: invalid literal for int() with base 10: '6828d30acf45ad84b675fdfe'
+2025-06-25 19:40:30,824 - ERROR - Error fetching title for 6828d30acf45ad84b675fe7f: invalid literal for int() with base 10: '6828d30acf45ad84b675fe7f'
+2025-06-25 19:40:30,825 - ERROR - Error fetching title for 6828d30dcf45ad84b675fffc: invalid literal for int() with base 10: '6828d30dcf45ad84b675fffc'
+2025-06-25 19:40:30,825 - ERROR - Error fetching title for 6828d30acf45ad84b675fe21: invalid literal for int() with base 10: '6828d30acf45ad84b675fe21'
+2025-06-25 19:40:30,825 - ERROR - Error fetching title for 6828d30acf45ad84b675fc9c: invalid literal for int() with base 10: '6828d30acf45ad84b675fc9c'
+2025-06-25 19:40:30,825 - ERROR - Error fetching title for 6828d30acf45ad84b675fdde: invalid literal for int() with base 10: '6828d30acf45ad84b675fdde'
+2025-06-25 19:40:30,825 - ERROR - Error fetching title for 6828d30acf45ad84b675fd38: invalid literal for int() with base 10: '6828d30acf45ad84b675fd38'
+2025-06-25 19:40:31,716 - INFO - Total candidates before MMR: 24
+2025-06-25 19:47:47,020 - INFO - Connected to MongoDB successfully.
+2025-06-25 19:47:47,021 - INFO - Loading data from MongoDB...
+2025-06-25 19:48:17,161 - ERROR - Error loading data: ac-ucplhqe-shard-00-00.y4nrdvh.mongodb.net:27017: [Errno 11001] getaddrinfo failed,ac-ucplhqe-shard-00-02.y4nrdvh.mongodb.net:27017: timed out,ac-ucplhqe-shard-00-01.y4nrdvh.mongodb.net:27017: [Errno 11001] getaddrinfo failed, Timeout: 30s, Topology Description: <TopologyDescription id: 685c445399289a4145c74180, topology_type: ReplicaSetNoPrimary, servers: [<ServerDescription ('ac-ucplhqe-shard-00-00.y4nrdvh.mongodb.net', 27017) server_type: Unknown, rtt: None, error=AutoReconnect('ac-ucplhqe-shard-00-00.y4nrdvh.mongodb.net:27017: [Errno 11001] getaddrinfo failed')>, <ServerDescription ('ac-ucplhqe-shard-00-01.y4nrdvh.mongodb.net', 27017) server_type: Unknown, rtt: None, error=AutoReconnect('ac-ucplhqe-shard-00-01.y4nrdvh.mongodb.net:27017: [Errno 11001] getaddrinfo failed')>, <ServerDescription ('ac-ucplhqe-shard-00-02.y4nrdvh.mongodb.net', 27017) server_type: Unknown, rtt: None, error=NetworkTimeout('ac-ucplhqe-shard-00-02.y4nrdvh.mongodb.net:27017: timed out')>]>
+2025-06-25 19:48:17,162 - INFO - Loading pre-trained embeddings...
+2025-06-25 19:48:17,290 - INFO - Loaded ../e-learning-platform/user_profiles.csv: 20 rows, 529 columns
+2025-06-25 19:48:17,291 - ERROR - Warning: File not found at 'user_profiles_articles.csv'.
+2025-06-25 19:48:17,725 - INFO - Loaded ../e-learning-platform/item_vectors_onehot.csv: 1133 rows, 337 columns
+2025-06-25 19:48:17,726 - ERROR - Warning: File not found at 'articles_profiles.csv'.
+2025-06-25 19:48:17,750 - INFO - Pre-trained embeddings loaded successfully.
+2025-06-25 19:48:17,750 - INFO - Initializing GNN model...
+2025-06-25 19:48:17,750 - ERROR - Cannot initialize model: no data loaded
+2025-06-25 19:48:17,750 - INFO - Generating course recommendations for user 682f8b0001761933b79bc3d3...
+2025-06-25 19:48:17,750 - ERROR - GNN model not available
+2025-06-25 19:48:17,808 - INFO - GNN recommendations: 0
+2025-06-25 19:48:17,808 - INFO - Content-based recommendations: 12
+2025-06-25 19:49:11,573 - ERROR - Error fetching title for 499: No replica set members match selector "Primary()", Timeout: 30s, Topology Description: <TopologyDescription id: 685c445399289a4145c74180, topology_type: ReplicaSetNoPrimary, servers: [<ServerDescription ('ac-ucplhqe-shard-00-00.y4nrdvh.mongodb.net', 27017) server_type: RSSecondary, rtt: 0.08395999990403653>, <ServerDescription ('ac-ucplhqe-shard-00-01.y4nrdvh.mongodb.net', 27017) server_type: RSSecondary, rtt: 0.10764000001363457>, <ServerDescription ('ac-ucplhqe-shard-00-02.y4nrdvh.mongodb.net', 27017) server_type: Unknown, rtt: None, error=NetworkTimeout('ac-ucplhqe-shard-00-02.y4nrdvh.mongodb.net:27017: timed out')>]>
+2025-06-25 19:50:04,276 - INFO - Total candidates before MMR: 12
+2025-06-25 19:50:04,284 - ERROR - Error generating recommendations: 'HybridRecommendationSystem' object has no attribute 'course_emb_dict'
+2025-06-25 19:50:04,284 - ERROR - GNN model not available
+2025-06-25 19:57:53,557 - INFO - Connected to MongoDB successfully.
+2025-06-25 19:57:53,558 - INFO - Loading data from MongoDB...
+2025-06-25 20:00:51,796 - INFO - Connected to MongoDB successfully.
+2025-06-25 20:00:51,796 - INFO - Loading data from MongoDB...
+2025-06-25 20:00:54,274 - INFO - Loaded data: 20 users, 1133 courses, 3513 articles
+2025-06-25 20:01:32,843 - INFO - Created graph with 30 edges
+2025-06-25 20:01:32,848 - INFO - Loading pre-trained embeddings...
+2025-06-25 20:01:33,003 - INFO - Loaded ../e-learning-platform/user_profiles.csv: 20 rows, 529 columns
+2025-06-25 20:01:33,003 - ERROR - Warning: File not found at 'user_profiles_articles.csv'.
+2025-06-25 20:01:33,612 - INFO - Loaded ../e-learning-platform/item_vectors_onehot.csv: 1133 rows, 337 columns
+2025-06-25 20:01:33,612 - ERROR - Warning: File not found at 'articles_profiles.csv'.
+2025-06-25 20:01:33,632 - INFO - Pre-trained embeddings loaded successfully.
+2025-06-25 20:01:33,632 - INFO - Initializing GNN model...
+2025-06-25 20:01:33,797 - INFO - Created 1133 course embeddings
+2025-06-25 20:01:33,797 - ERROR - Error loading model: [Errno 2] No such file or directory: 'gnn_model/lightgcn_model.pth'
+2025-06-25 20:01:33,797 - INFO - Continuing with randomly initialized GNN model weights
+2025-06-25 20:01:33,797 - INFO - Generating course recommendations for user 682f8b0001761933b79bc3d3...
+2025-06-25 20:01:33,867 - INFO - GNN recommendations: 12
+2025-06-25 20:01:33,867 - INFO - Content-based recommendations: 12
+2025-06-25 20:01:33,867 - ERROR - Error fetching title for 6828d30acf45ad84b675ff1f: invalid literal for int() with base 10: '6828d30acf45ad84b675ff1f'
+2025-06-25 20:01:33,867 - ERROR - Error fetching title for 6828d30acf45ad84b675fc16: invalid literal for int() with base 10: '6828d30acf45ad84b675fc16'
+2025-06-25 20:01:33,867 - ERROR - Error fetching title for 6828d30acf45ad84b675fee9: invalid literal for int() with base 10: '6828d30acf45ad84b675fee9'
+2025-06-25 20:01:33,867 - ERROR - Error fetching title for 6828d30acf45ad84b675fbb4: invalid literal for int() with base 10: '6828d30acf45ad84b675fbb4'
+2025-06-25 20:01:33,867 - ERROR - Error fetching title for 6828d30acf45ad84b675fc63: invalid literal for int() with base 10: '6828d30acf45ad84b675fc63'
+2025-06-25 20:01:33,867 - ERROR - Error fetching title for 6828d30acf45ad84b675fcb9: invalid literal for int() with base 10: '6828d30acf45ad84b675fcb9'
+2025-06-25 20:01:33,867 - ERROR - Error fetching title for 6828d30acf45ad84b675fe6c: invalid literal for int() with base 10: '6828d30acf45ad84b675fe6c'
+2025-06-25 20:01:33,867 - ERROR - Error fetching title for 6828d30acf45ad84b675fbae: invalid literal for int() with base 10: '6828d30acf45ad84b675fbae'
+2025-06-25 20:01:33,868 - ERROR - Error fetching title for 6828d30acf45ad84b675fce8: invalid literal for int() with base 10: '6828d30acf45ad84b675fce8'
+2025-06-25 20:01:33,868 - ERROR - Error fetching title for 6828d30acf45ad84b675fd6f: invalid literal for int() with base 10: '6828d30acf45ad84b675fd6f'
+2025-06-25 20:01:33,868 - ERROR - Error fetching title for 6828d30acf45ad84b675fd63: invalid literal for int() with base 10: '6828d30acf45ad84b675fd63'
+2025-06-25 20:01:33,868 - ERROR - Error fetching title for 6828d30acf45ad84b675fde8: invalid literal for int() with base 10: '6828d30acf45ad84b675fde8'
+2025-06-25 20:01:34,745 - INFO - Total candidates before MMR: 24
+2025-06-25 20:05:39,136 - INFO - Connected to MongoDB successfully.
+2025-06-25 20:05:39,136 - INFO - Loading data from MongoDB...
+2025-06-25 20:05:40,691 - INFO - Loaded data: 20 users, 1133 courses, 3513 articles
+2025-06-25 20:14:34,570 - INFO - Connected to MongoDB successfully.
+2025-06-25 20:14:34,571 - INFO - Loading data from MongoDB...
+2025-06-25 20:14:37,187 - INFO - Loaded data: 20 users, 1133 courses, 3513 articles
+2025-06-25 20:20:55,243 - INFO - Connected to MongoDB successfully.
+2025-06-25 20:20:55,244 - INFO - Loading data from MongoDB...
+2025-06-25 20:20:57,514 - INFO - Loaded data: 20 users, 1133 courses, 3513 articles
+2025-06-25 20:21:24,517 - INFO - Created graph with 30 edges
+2025-06-25 20:21:24,524 - INFO - Loading pre-trained embeddings...
+2025-06-25 20:21:24,667 - INFO - Loaded ../e-learning-platform/user_profiles.csv: 20 rows, 529 columns
+2025-06-25 20:21:24,667 - ERROR - Warning: File not found at 'user_profiles_articles.csv'.
+2025-06-25 20:21:25,341 - INFO - Loaded ../e-learning-platform/item_vectors_onehot.csv: 1133 rows, 337 columns
+2025-06-25 20:21:25,341 - ERROR - Warning: File not found at 'articles_profiles.csv'.
+2025-06-25 20:21:25,356 - INFO - Pre-trained embeddings loaded successfully.
+2025-06-25 20:21:25,356 - INFO - Initializing GNN model...
+2025-06-25 20:21:25,496 - INFO - Created 1133 course embeddings
+2025-06-25 20:21:25,497 - ERROR - Error loading model: [Errno 2] No such file or directory: 'gnn_model/lightgcn_model.pth'
+2025-06-25 20:21:25,498 - INFO - Continuing with randomly initialized GNN model weights
+2025-06-25 20:21:25,498 - INFO - Generating course recommendations for user 682f8b0001761933b79bc3d3...
+2025-06-25 20:21:25,558 - INFO - GNN recommendations: 15
+2025-06-25 20:21:25,558 - INFO - Content-based recommendations: 15
+2025-06-25 20:21:25,558 - ERROR - Error fetching title for 6828d30acf45ad84b675ff1f: invalid literal for int() with base 10: '6828d30acf45ad84b675ff1f'
+2025-06-25 20:21:25,558 - ERROR - Error fetching title for 6828d30acf45ad84b675fee9: invalid literal for int() with base 10: '6828d30acf45ad84b675fee9'
+2025-06-25 20:21:25,559 - ERROR - Error fetching title for 6828d30acf45ad84b675fc16: invalid literal for int() with base 10: '6828d30acf45ad84b675fc16'
+2025-06-25 20:21:25,559 - ERROR - Error fetching title for 6828d30acf45ad84b675fcb9: invalid literal for int() with base 10: '6828d30acf45ad84b675fcb9'
+2025-06-25 20:21:25,559 - ERROR - Error fetching title for 6828d30acf45ad84b675fe79: invalid literal for int() with base 10: '6828d30acf45ad84b675fe79'
+2025-06-25 20:21:25,559 - ERROR - Error fetching title for 6828d30dcf45ad84b675ffc2: invalid literal for int() with base 10: '6828d30dcf45ad84b675ffc2'
+2025-06-25 20:21:25,559 - ERROR - Error fetching title for 6828d30acf45ad84b675fe53: invalid literal for int() with base 10: '6828d30acf45ad84b675fe53'
+2025-06-25 20:21:25,559 - ERROR - Error fetching title for 6828d30acf45ad84b675fcfb: invalid literal for int() with base 10: '6828d30acf45ad84b675fcfb'
+2025-06-25 20:21:25,559 - ERROR - Error fetching title for 6828d30dcf45ad84b675fffb: invalid literal for int() with base 10: '6828d30dcf45ad84b675fffb'
+2025-06-25 20:21:25,559 - ERROR - Error fetching title for 6828d30acf45ad84b675fee6: invalid literal for int() with base 10: '6828d30acf45ad84b675fee6'
+2025-06-25 20:21:25,559 - ERROR - Error fetching title for 6828d30acf45ad84b675fd39: invalid literal for int() with base 10: '6828d30acf45ad84b675fd39'
+2025-06-25 20:21:25,559 - ERROR - Error fetching title for 6828d30acf45ad84b675fe13: invalid literal for int() with base 10: '6828d30acf45ad84b675fe13'
+2025-06-25 20:21:25,559 - ERROR - Error fetching title for 6828d30acf45ad84b675fcb7: invalid literal for int() with base 10: '6828d30acf45ad84b675fcb7'
+2025-06-25 20:21:25,560 - ERROR - Error fetching title for 6828d30acf45ad84b675fe58: invalid literal for int() with base 10: '6828d30acf45ad84b675fe58'
+2025-06-25 20:21:25,560 - ERROR - Error fetching title for 6828d30acf45ad84b675fec3: invalid literal for int() with base 10: '6828d30acf45ad84b675fec3'
+2025-06-25 20:21:27,424 - INFO - Total candidates before MMR: 30
+2025-06-25 20:22:04,221 - INFO - Connected to MongoDB successfully.
+2025-06-25 20:22:04,221 - INFO - Loading data from MongoDB...
+2025-06-25 20:22:06,924 - INFO - Loaded data: 20 users, 1133 courses, 3513 articles
+2025-06-25 20:38:43,218 - INFO - Connected to MongoDB successfully.
+2025-06-25 20:38:43,219 - INFO - Loading data from MongoDB...
+2025-06-25 20:38:43,863 - INFO - Loaded data: 20 users, 1133 courses, 3513 articles
+2025-06-25 20:39:03,612 - INFO - Created graph with 30 edges
+2025-06-25 20:39:03,617 - INFO - Loading pre-trained embeddings...
+2025-06-25 20:39:03,761 - INFO - Loaded ../e-learning-platform/user_profiles.csv: 20 rows, 529 columns
+2025-06-25 20:39:03,761 - ERROR - Warning: File not found at 'user_profiles_articles.csv'.
+2025-06-25 20:39:04,431 - INFO - Loaded ../e-learning-platform/item_vectors_onehot.csv: 1133 rows, 337 columns
+2025-06-25 20:39:04,431 - ERROR - Warning: File not found at 'articles_profiles.csv'.
+2025-06-25 20:39:04,443 - INFO - Pre-trained embeddings loaded successfully.
+2025-06-25 20:39:04,444 - INFO - Initializing GNN model...
+2025-06-25 20:39:04,680 - INFO - Created 1133 course embeddings
+2025-06-25 20:39:04,681 - ERROR - Error loading model: [Errno 2] No such file or directory: 'gnn_model/lightgcn_model.pth'
+2025-06-25 20:39:04,681 - INFO - Continuing with randomly initialized GNN model weights
+2025-06-25 20:39:04,681 - INFO - Generating course recommendations for user 682f8b0001761933b79bc3d3...
+2025-06-25 20:39:04,742 - INFO - GNN recommendations: 15
+2025-06-25 20:39:04,742 - INFO - Content-based recommendations: 15
+2025-06-25 20:39:04,742 - ERROR - Error fetching title for 6828d30acf45ad84b675fee9: invalid literal for int() with base 10: '6828d30acf45ad84b675fee9'
+2025-06-25 20:39:04,742 - ERROR - Error fetching title for 6828d30acf45ad84b675ff1f: invalid literal for int() with base 10: '6828d30acf45ad84b675ff1f'
+2025-06-25 20:39:04,742 - ERROR - Error fetching title for 6828d30acf45ad84b675fc16: invalid literal for int() with base 10: '6828d30acf45ad84b675fc16'
+2025-06-25 20:39:04,742 - ERROR - Error fetching title for 6828d30acf45ad84b675fc9c: invalid literal for int() with base 10: '6828d30acf45ad84b675fc9c'
+2025-06-25 20:39:04,742 - ERROR - Error fetching title for 6828d30acf45ad84b675fcb9: invalid literal for int() with base 10: '6828d30acf45ad84b675fcb9'
+2025-06-25 20:39:04,742 - ERROR - Error fetching title for 6828d30acf45ad84b675fbb1: invalid literal for int() with base 10: '6828d30acf45ad84b675fbb1'
+2025-06-25 20:39:04,742 - ERROR - Error fetching title for 6828d30acf45ad84b675fecd: invalid literal for int() with base 10: '6828d30acf45ad84b675fecd'
+2025-06-25 20:39:04,742 - ERROR - Error fetching title for 6828d30acf45ad84b675fca6: invalid literal for int() with base 10: '6828d30acf45ad84b675fca6'
+2025-06-25 20:39:04,743 - ERROR - Error fetching title for 6828d30acf45ad84b675fd96: invalid literal for int() with base 10: '6828d30acf45ad84b675fd96'
+2025-06-25 20:39:04,743 - ERROR - Error fetching title for 6828d30acf45ad84b675fbb7: invalid literal for int() with base 10: '6828d30acf45ad84b675fbb7'
+2025-06-25 20:39:04,743 - ERROR - Error fetching title for 6828d30acf45ad84b675fc1c: invalid literal for int() with base 10: '6828d30acf45ad84b675fc1c'
+2025-06-25 20:39:04,743 - ERROR - Error fetching title for 6828d30acf45ad84b675ff53: invalid literal for int() with base 10: '6828d30acf45ad84b675ff53'
+2025-06-25 20:39:04,743 - ERROR - Error fetching title for 6828d30acf45ad84b675ff07: invalid literal for int() with base 10: '6828d30acf45ad84b675ff07'
+2025-06-25 20:39:04,743 - ERROR - Error fetching title for 6828d30dcf45ad84b675ffa6: invalid literal for int() with base 10: '6828d30dcf45ad84b675ffa6'
+2025-06-25 20:39:04,744 - ERROR - Error fetching title for 6828d30acf45ad84b675fd32: invalid literal for int() with base 10: '6828d30acf45ad84b675fd32'
+2025-06-25 20:39:05,415 - INFO - Total candidates before MMR: 30
+2025-06-25 20:42:16,963 - INFO - Connected to MongoDB successfully.
+2025-06-25 20:42:16,963 - INFO - Loading data from MongoDB...
+2025-06-25 20:42:18,332 - INFO - Loaded data: 20 users, 1133 courses, 3513 articles
+2025-06-25 20:42:38,708 - INFO - Created graph with 30 edges
+2025-06-25 20:42:38,712 - INFO - Loading pre-trained embeddings...
+2025-06-25 20:42:38,862 - INFO - Loaded ../e-learning-platform/user_profiles.csv: 20 rows, 529 columns
+2025-06-25 20:42:38,862 - ERROR - Warning: File not found at 'user_profiles_articles.csv'.
+2025-06-25 20:42:39,443 - INFO - Loaded ../e-learning-platform/item_vectors_onehot.csv: 1133 rows, 337 columns
+2025-06-25 20:42:39,444 - ERROR - Warning: File not found at 'articles_profiles.csv'.
+2025-06-25 20:42:39,469 - INFO - Pre-trained embeddings loaded successfully.
+2025-06-25 20:42:39,470 - INFO - Initializing GNN model...
+2025-06-25 20:42:39,608 - INFO - Created 1133 course embeddings
+2025-06-25 20:42:39,609 - ERROR - Error loading model: [Errno 2] No such file or directory: 'gnn_model/lightgcn_model.pth'
+2025-06-25 20:42:39,609 - INFO - Continuing with randomly initialized GNN model weights
+2025-06-25 20:42:39,609 - INFO - Generating course recommendations for user 682f8b0001761933b79bc3d3...
+2025-06-25 20:42:39,679 - INFO - GNN recommendations: 15
+2025-06-25 20:42:39,679 - INFO - Content-based recommendations: 15
+2025-06-25 20:42:39,679 - ERROR - Error fetching title for 6828d30acf45ad84b675ff1f: invalid literal for int() with base 10: '6828d30acf45ad84b675ff1f'
+2025-06-25 20:42:39,680 - ERROR - Error fetching title for 6828d30acf45ad84b675fc16: invalid literal for int() with base 10: '6828d30acf45ad84b675fc16'
+2025-06-25 20:42:39,680 - ERROR - Error fetching title for 6828d30acf45ad84b675fee9: invalid literal for int() with base 10: '6828d30acf45ad84b675fee9'
+2025-06-25 20:42:39,680 - ERROR - Error fetching title for 6828d30acf45ad84b675fc43: invalid literal for int() with base 10: '6828d30acf45ad84b675fc43'
+2025-06-25 20:42:39,680 - ERROR - Error fetching title for 6828d30acf45ad84b675fe19: invalid literal for int() with base 10: '6828d30acf45ad84b675fe19'
+2025-06-25 20:42:39,680 - ERROR - Error fetching title for 6828d30dcf45ad84b675ff9d: invalid literal for int() with base 10: '6828d30dcf45ad84b675ff9d'
+2025-06-25 20:42:39,680 - ERROR - Error fetching title for 6828d30dcf45ad84b675fff4: invalid literal for int() with base 10: '6828d30dcf45ad84b675fff4'
+2025-06-25 20:42:39,680 - ERROR - Error fetching title for 6828d30acf45ad84b675fe28: invalid literal for int() with base 10: '6828d30acf45ad84b675fe28'
+2025-06-25 20:42:39,680 - ERROR - Error fetching title for 6828d30acf45ad84b675fd4f: invalid literal for int() with base 10: '6828d30acf45ad84b675fd4f'
+2025-06-25 20:42:39,680 - ERROR - Error fetching title for 6828d30acf45ad84b675fd21: invalid literal for int() with base 10: '6828d30acf45ad84b675fd21'
+2025-06-25 20:42:39,680 - ERROR - Error fetching title for 6828d30dcf45ad84b675ffc2: invalid literal for int() with base 10: '6828d30dcf45ad84b675ffc2'
+2025-06-25 20:42:39,680 - ERROR - Error fetching title for 6828d30dcf45ad84b675ff8a: invalid literal for int() with base 10: '6828d30dcf45ad84b675ff8a'
+2025-06-25 20:42:39,680 - ERROR - Error fetching title for 6828d30dcf45ad84b675ffe1: invalid literal for int() with base 10: '6828d30dcf45ad84b675ffe1'
+2025-06-25 20:42:39,680 - ERROR - Error fetching title for 6828d30acf45ad84b675fcfc: invalid literal for int() with base 10: '6828d30acf45ad84b675fcfc'
+2025-06-25 20:42:39,680 - ERROR - Error fetching title for 6828d30acf45ad84b675ff75: invalid literal for int() with base 10: '6828d30acf45ad84b675ff75'
+2025-06-25 20:42:41,368 - INFO - Total candidates before MMR: 30
+2025-06-25 20:45:34,436 - INFO - Connected to MongoDB successfully.
+2025-06-25 20:45:34,437 - INFO - Loading data from MongoDB...
+2025-06-25 20:45:35,824 - INFO - Loaded data: 20 users, 1133 courses, 3513 articles
+2025-06-25 20:45:52,021 - INFO - Created graph with 30 edges
+2025-06-25 20:45:52,026 - INFO - Loading pre-trained embeddings...
+2025-06-25 20:45:52,169 - INFO - Loaded ../e-learning-platform/user_profiles.csv: 20 rows, 529 columns
+2025-06-25 20:45:52,170 - ERROR - Warning: File not found at 'user_profiles_articles.csv'.
+2025-06-25 20:45:52,883 - INFO - Loaded ../e-learning-platform/item_vectors_onehot.csv: 1133 rows, 337 columns
+2025-06-25 20:45:52,884 - ERROR - Warning: File not found at 'articles_profiles.csv'.
+2025-06-25 20:45:52,906 - INFO - Pre-trained embeddings loaded successfully.
+2025-06-25 20:45:52,906 - INFO - Initializing GNN model...
+2025-06-25 20:45:53,038 - INFO - Created 1133 course embeddings
+2025-06-25 20:45:53,039 - ERROR - Error loading model: [Errno 2] No such file or directory: 'gnn_model/lightgcn_model.pth'
+2025-06-25 20:45:53,039 - INFO - Continuing with randomly initialized GNN model weights
+2025-06-25 20:45:53,039 - INFO - Generating course recommendations for user 682f8b0001761933b79bc3d3...
+2025-06-25 20:45:53,112 - INFO - GNN recommendations: 15
+2025-06-25 20:45:53,112 - INFO - Content-based recommendations: 15
+2025-06-25 20:45:53,112 - ERROR - Error fetching title for 6828d30acf45ad84b675fee9: invalid literal for int() with base 10: '6828d30acf45ad84b675fee9'
+2025-06-25 20:45:53,113 - ERROR - Error fetching title for 6828d30acf45ad84b675fc16: invalid literal for int() with base 10: '6828d30acf45ad84b675fc16'
+2025-06-25 20:45:53,113 - ERROR - Error fetching title for 6828d30acf45ad84b675ff1f: invalid literal for int() with base 10: '6828d30acf45ad84b675ff1f'
+2025-06-25 20:45:53,113 - ERROR - Error fetching title for 6828d30acf45ad84b675fea4: invalid literal for int() with base 10: '6828d30acf45ad84b675fea4'
+2025-06-25 20:45:53,113 - ERROR - Error fetching title for 6828d30acf45ad84b675fd05: invalid literal for int() with base 10: '6828d30acf45ad84b675fd05'
+2025-06-25 20:45:53,113 - ERROR - Error fetching title for 6828d30acf45ad84b675fe2b: invalid literal for int() with base 10: '6828d30acf45ad84b675fe2b'
+2025-06-25 20:45:53,113 - ERROR - Error fetching title for 6828d30dcf45ad84b675ffe1: invalid literal for int() with base 10: '6828d30dcf45ad84b675ffe1'
+2025-06-25 20:45:53,113 - ERROR - Error fetching title for 6828d30acf45ad84b675fcc0: invalid literal for int() with base 10: '6828d30acf45ad84b675fcc0'
+2025-06-25 20:45:53,113 - ERROR - Error fetching title for 6828d30acf45ad84b675fe4b: invalid literal for int() with base 10: '6828d30acf45ad84b675fe4b'
+2025-06-25 20:45:53,113 - ERROR - Error fetching title for 6828d30acf45ad84b675feb1: invalid literal for int() with base 10: '6828d30acf45ad84b675feb1'
+2025-06-25 20:45:53,113 - ERROR - Error fetching title for 6828d30dcf45ad84b675ffa1: invalid literal for int() with base 10: '6828d30dcf45ad84b675ffa1'
+2025-06-25 20:45:53,113 - ERROR - Error fetching title for 6828d30acf45ad84b675fdbf: invalid literal for int() with base 10: '6828d30acf45ad84b675fdbf'
+2025-06-25 20:45:53,113 - ERROR - Error fetching title for 6828d30acf45ad84b675ff2e: invalid literal for int() with base 10: '6828d30acf45ad84b675ff2e'
+2025-06-25 20:45:53,113 - ERROR - Error fetching title for 6828d30acf45ad84b675ff54: invalid literal for int() with base 10: '6828d30acf45ad84b675ff54'
+2025-06-25 20:45:53,114 - ERROR - Error fetching title for 6828d30acf45ad84b675fd40: invalid literal for int() with base 10: '6828d30acf45ad84b675fd40'
+2025-06-25 20:45:54,260 - INFO - Total candidates before MMR: 30
+2025-06-25 20:46:49,756 - INFO - Connected to MongoDB successfully.
+2025-06-25 20:46:49,756 - INFO - Loading data from MongoDB...
+2025-06-25 20:46:52,042 - INFO - Loaded data: 20 users, 1133 courses, 3513 articles
+2025-06-25 20:46:59,034 - INFO - Created graph with 30 edges
+2025-06-25 20:46:59,040 - INFO - Loading pre-trained embeddings...
+2025-06-25 20:46:59,166 - INFO - Loaded ../e-learning-platform/user_profiles.csv: 20 rows, 529 columns
+2025-06-25 20:46:59,168 - ERROR - Warning: File not found at 'user_profiles_articles.csv'.
+2025-06-25 20:46:59,719 - INFO - Loaded ../e-learning-platform/item_vectors_onehot.csv: 1133 rows, 337 columns
+2025-06-25 20:46:59,720 - ERROR - Warning: File not found at 'articles_profiles.csv'.
+2025-06-25 20:46:59,744 - INFO - Pre-trained embeddings loaded successfully.
+2025-06-25 20:46:59,744 - INFO - Initializing GNN model...
+2025-06-25 20:46:59,889 - INFO - Created 1133 course embeddings
+2025-06-25 20:46:59,889 - ERROR - Error loading model: [Errno 2] No such file or directory: 'gnn_model/lightgcn_model.pth'
+2025-06-25 20:46:59,890 - INFO - Continuing with randomly initialized GNN model weights
+2025-06-25 20:46:59,890 - INFO - Generating course recommendations for user 682f8b0001761933b79bc3d3...
+2025-06-25 20:46:59,956 - INFO - GNN recommendations: 15
+2025-06-25 20:46:59,957 - INFO - Content-based recommendations: 15
+2025-06-25 20:46:59,957 - ERROR - Error fetching title for 6828d30acf45ad84b675ff1f: invalid literal for int() with base 10: '6828d30acf45ad84b675ff1f'
+2025-06-25 20:46:59,957 - ERROR - Error fetching title for 6828d30acf45ad84b675fc16: invalid literal for int() with base 10: '6828d30acf45ad84b675fc16'
+2025-06-25 20:46:59,957 - ERROR - Error fetching title for 6828d30acf45ad84b675fee9: invalid literal for int() with base 10: '6828d30acf45ad84b675fee9'
+2025-06-25 20:46:59,958 - ERROR - Error fetching title for 6828d30acf45ad84b675fd98: invalid literal for int() with base 10: '6828d30acf45ad84b675fd98'
+2025-06-25 20:46:59,958 - ERROR - Error fetching title for 6828d30acf45ad84b675fec6: invalid literal for int() with base 10: '6828d30acf45ad84b675fec6'
+2025-06-25 20:46:59,958 - ERROR - Error fetching title for 6828d30acf45ad84b675fda3: invalid literal for int() with base 10: '6828d30acf45ad84b675fda3'
+2025-06-25 20:46:59,958 - ERROR - Error fetching title for 6828d30acf45ad84b675feb2: invalid literal for int() with base 10: '6828d30acf45ad84b675feb2'
+2025-06-25 20:46:59,958 - ERROR - Error fetching title for 6828d30acf45ad84b675ff6d: invalid literal for int() with base 10: '6828d30acf45ad84b675ff6d'
+2025-06-25 20:46:59,958 - ERROR - Error fetching title for 6828d30acf45ad84b675fee2: invalid literal for int() with base 10: '6828d30acf45ad84b675fee2'
+2025-06-25 20:46:59,958 - ERROR - Error fetching title for 6828d30acf45ad84b675fba7: invalid literal for int() with base 10: '6828d30acf45ad84b675fba7'
+2025-06-25 20:46:59,958 - ERROR - Error fetching title for 6828d30acf45ad84b675fe78: invalid literal for int() with base 10: '6828d30acf45ad84b675fe78'
+2025-06-25 20:46:59,958 - ERROR - Error fetching title for 6828d30acf45ad84b675fdb3: invalid literal for int() with base 10: '6828d30acf45ad84b675fdb3'
+2025-06-25 20:46:59,958 - ERROR - Error fetching title for 6828d30dcf45ad84b675ffb7: invalid literal for int() with base 10: '6828d30dcf45ad84b675ffb7'
+2025-06-25 20:46:59,958 - ERROR - Error fetching title for 6828d30acf45ad84b675fd19: invalid literal for int() with base 10: '6828d30acf45ad84b675fd19'
+2025-06-25 20:46:59,958 - ERROR - Error fetching title for 6828d30acf45ad84b675fd61: invalid literal for int() with base 10: '6828d30acf45ad84b675fd61'
+2025-06-25 20:47:00,625 - INFO - Total candidates before MMR: 30
+2025-06-25 20:47:32,740 - INFO - Connected to MongoDB successfully.
+2025-06-25 20:47:32,741 - INFO - Loading data from MongoDB...
+2025-06-25 20:47:35,318 - INFO - Loaded data: 20 users, 1133 courses, 3513 articles
+2025-06-25 20:51:00,182 - INFO - Connected to MongoDB successfully.
+2025-06-25 20:51:00,183 - INFO - Loading data from MongoDB...
+2025-06-25 20:51:08,183 - INFO - Loaded data: 20 users, 1133 courses, 3513 articles
+2025-06-25 20:52:13,875 - INFO - Connected to MongoDB successfully.
+2025-06-25 20:52:13,875 - INFO - Loading data from MongoDB...
+2025-06-25 20:52:16,283 - INFO - Loaded data: 20 users, 1133 courses, 3513 articles
+2025-06-25 20:52:24,376 - INFO - Created graph with 30 edges
+2025-06-25 20:52:24,383 - INFO - Loading pre-trained embeddings...
+2025-06-25 20:52:24,548 - INFO - Loaded ../e-learning-platform/user_profiles.csv: 20 rows, 529 columns
+2025-06-25 20:52:24,549 - ERROR - Warning: File not found at 'user_profiles_articles.csv'.
+2025-06-25 20:52:25,129 - INFO - Loaded ../e-learning-platform/item_vectors_onehot.csv: 1133 rows, 337 columns
+2025-06-25 20:52:25,129 - ERROR - Warning: File not found at 'articles_profiles.csv'.
+2025-06-25 20:52:25,144 - INFO - Pre-trained embeddings loaded successfully.
+2025-06-25 20:52:25,144 - INFO - Initializing GNN model...
+2025-06-25 20:52:25,298 - INFO - Created 1133 course embeddings
+2025-06-25 20:52:25,299 - ERROR - Error loading model: [Errno 2] No such file or directory: 'gnn_model/lightgcn_model.pth'
+2025-06-25 20:52:25,299 - INFO - Continuing with randomly initialized GNN model weights
+2025-06-25 20:52:25,300 - INFO - Generating course recommendations for user 682f8b0001761933b79bc3d3...
+2025-06-25 20:52:25,365 - INFO - GNN recommendations: 15
+2025-06-25 20:52:25,366 - INFO - Content-based recommendations: 15
+2025-06-25 20:52:25,366 - ERROR - Error fetching title for 6828d30acf45ad84b675ff1f: invalid literal for int() with base 10: '6828d30acf45ad84b675ff1f'
+2025-06-25 20:52:25,366 - ERROR - Error fetching title for 6828d30acf45ad84b675fee9: invalid literal for int() with base 10: '6828d30acf45ad84b675fee9'
+2025-06-25 20:52:25,366 - ERROR - Error fetching title for 6828d30acf45ad84b675fc16: invalid literal for int() with base 10: '6828d30acf45ad84b675fc16'
+2025-06-25 20:52:25,366 - ERROR - Error fetching title for 6828d30acf45ad84b675fcb9: invalid literal for int() with base 10: '6828d30acf45ad84b675fcb9'
+2025-06-25 20:52:25,366 - ERROR - Error fetching title for 6828d30acf45ad84b675fd50: invalid literal for int() with base 10: '6828d30acf45ad84b675fd50'
+2025-06-25 20:52:25,366 - ERROR - Error fetching title for 6828d30acf45ad84b675ff07: invalid literal for int() with base 10: '6828d30acf45ad84b675ff07'
+2025-06-25 20:52:25,366 - ERROR - Error fetching title for 6828d30acf45ad84b675fcf9: invalid literal for int() with base 10: '6828d30acf45ad84b675fcf9'
+2025-06-25 20:52:25,366 - ERROR - Error fetching title for 6828d30acf45ad84b675ff6a: invalid literal for int() with base 10: '6828d30acf45ad84b675ff6a'
+2025-06-25 20:52:25,366 - ERROR - Error fetching title for 6828d30dcf45ad84b675ff9d: invalid literal for int() with base 10: '6828d30dcf45ad84b675ff9d'
+2025-06-25 20:52:25,366 - ERROR - Error fetching title for 6828d30dcf45ad84b675ff9b: invalid literal for int() with base 10: '6828d30dcf45ad84b675ff9b'
+2025-06-25 20:52:25,366 - ERROR - Error fetching title for 6828d30acf45ad84b675febe: invalid literal for int() with base 10: '6828d30acf45ad84b675febe'
+2025-06-25 20:52:25,366 - ERROR - Error fetching title for 6828d30acf45ad84b675fe7d: invalid literal for int() with base 10: '6828d30acf45ad84b675fe7d'
+2025-06-25 20:52:25,366 - ERROR - Error fetching title for 6828d30acf45ad84b675fc43: invalid literal for int() with base 10: '6828d30acf45ad84b675fc43'
+2025-06-25 20:52:25,367 - ERROR - Error fetching title for 6828d30acf45ad84b675fd70: invalid literal for int() with base 10: '6828d30acf45ad84b675fd70'
+2025-06-25 20:52:25,367 - ERROR - Error fetching title for 6828d30acf45ad84b675fca5: invalid literal for int() with base 10: '6828d30acf45ad84b675fca5'
+2025-06-25 20:52:26,386 - INFO - Total candidates before MMR: 30
+2025-06-25 20:58:13,162 - INFO - Connected to MongoDB successfully.
+2025-06-25 20:58:13,163 - INFO - Loading data from MongoDB...
+2025-06-25 20:58:15,313 - INFO - Loaded data: 20 users, 1133 courses, 3513 articles
+2025-06-25 20:58:29,884 - INFO - Created graph with 30 edges
+2025-06-25 20:58:29,892 - INFO - Loading pre-trained embeddings...
+2025-06-25 20:58:30,040 - INFO - Loaded ../e-learning-platform/user_profiles.csv: 20 rows, 529 columns
+2025-06-25 20:58:30,040 - ERROR - Warning: File not found at 'user_profiles_articles.csv'.
+2025-06-25 20:58:30,763 - INFO - Loaded ../e-learning-platform/item_vectors_onehot.csv: 1133 rows, 337 columns
+2025-06-25 20:58:30,764 - ERROR - Warning: File not found at 'articles_profiles.csv'.
+2025-06-25 20:58:30,779 - INFO - Pre-trained embeddings loaded successfully.
+2025-06-25 20:58:30,779 - INFO - Initializing GNN model...
+2025-06-25 20:58:30,963 - INFO - Created 1133 course embeddings
+2025-06-25 20:58:30,964 - ERROR - Error loading model: [Errno 2] No such file or directory: 'gnn_model/lightgcn_model.pth'
+2025-06-25 20:58:30,964 - INFO - Continuing with randomly initialized GNN model weights
+2025-06-25 20:58:30,964 - INFO - Generating course recommendations for user 682f8b0001761933b79bc3d3...
+2025-06-25 20:58:31,021 - INFO - GNN recommendations: 15
+2025-06-25 20:58:31,021 - INFO - Content-based recommendations: 15
+2025-06-25 20:58:31,022 - ERROR - Error fetching title for 6828d30acf45ad84b675ff1f: invalid literal for int() with base 10: '6828d30acf45ad84b675ff1f'
+2025-06-25 20:58:31,022 - ERROR - Error fetching title for 6828d30acf45ad84b675fc16: invalid literal for int() with base 10: '6828d30acf45ad84b675fc16'
+2025-06-25 20:58:31,022 - ERROR - Error fetching title for 6828d30acf45ad84b675fee9: invalid literal for int() with base 10: '6828d30acf45ad84b675fee9'
+2025-06-25 20:58:31,022 - ERROR - Error fetching title for 6828d30acf45ad84b675fc8d: invalid literal for int() with base 10: '6828d30acf45ad84b675fc8d'
+2025-06-25 20:58:31,022 - ERROR - Error fetching title for 6828d30acf45ad84b675fcad: invalid literal for int() with base 10: '6828d30acf45ad84b675fcad'
+2025-06-25 20:58:31,022 - ERROR - Error fetching title for 6828d30acf45ad84b675fd3f: invalid literal for int() with base 10: '6828d30acf45ad84b675fd3f'
+2025-06-25 20:58:31,022 - ERROR - Error fetching title for 6828d30dcf45ad84b675ffad: invalid literal for int() with base 10: '6828d30dcf45ad84b675ffad'
+2025-06-25 20:58:31,022 - ERROR - Error fetching title for 6828d30acf45ad84b675fef5: invalid literal for int() with base 10: '6828d30acf45ad84b675fef5'
+2025-06-25 20:58:31,022 - ERROR - Error fetching title for 6828d30acf45ad84b675fba4: invalid literal for int() with base 10: '6828d30acf45ad84b675fba4'
+2025-06-25 20:58:31,022 - ERROR - Error fetching title for 6828d30acf45ad84b675fd04: invalid literal for int() with base 10: '6828d30acf45ad84b675fd04'
+2025-06-25 20:58:31,022 - ERROR - Error fetching title for 6828d30dcf45ad84b675ffcd: invalid literal for int() with base 10: '6828d30dcf45ad84b675ffcd'
+2025-06-25 20:58:31,022 - ERROR - Error fetching title for 6828d30acf45ad84b675fc41: invalid literal for int() with base 10: '6828d30acf45ad84b675fc41'
+2025-06-25 20:58:31,022 - ERROR - Error fetching title for 6828d30acf45ad84b675fd55: invalid literal for int() with base 10: '6828d30acf45ad84b675fd55'
+2025-06-25 20:58:31,022 - ERROR - Error fetching title for 6828d30acf45ad84b675ff04: invalid literal for int() with base 10: '6828d30acf45ad84b675ff04'
+2025-06-25 20:58:31,023 - ERROR - Error fetching title for 6828d30acf45ad84b675fbae: invalid literal for int() with base 10: '6828d30acf45ad84b675fbae'
+2025-06-25 20:59:14,438 - INFO - Connected to MongoDB successfully.
+2025-06-25 20:59:14,439 - INFO - Loading data from MongoDB...
+2025-06-25 20:59:16,774 - INFO - Loaded data: 20 users, 1133 courses, 3513 articles
+2025-06-25 20:59:25,096 - INFO - Created graph with 30 edges
+2025-06-25 20:59:25,102 - INFO - Loading pre-trained embeddings...
+2025-06-25 20:59:25,235 - INFO - Loaded ../e-learning-platform/user_profiles.csv: 20 rows, 529 columns
+2025-06-25 20:59:25,235 - ERROR - Warning: File not found at 'user_profiles_articles.csv'.
+2025-06-25 20:59:25,849 - INFO - Loaded ../e-learning-platform/item_vectors_onehot.csv: 1133 rows, 337 columns
+2025-06-25 20:59:25,849 - ERROR - Warning: File not found at 'articles_profiles.csv'.
+2025-06-25 20:59:25,867 - INFO - Pre-trained embeddings loaded successfully.
+2025-06-25 20:59:25,867 - INFO - Initializing GNN model...
+2025-06-25 20:59:26,003 - INFO - Created 1133 course embeddings
+2025-06-25 20:59:26,004 - ERROR - Error loading model: [Errno 2] No such file or directory: 'gnn_model/lightgcn_model.pth'
+2025-06-25 20:59:26,005 - INFO - Continuing with randomly initialized GNN model weights
+2025-06-25 20:59:26,005 - INFO - Generating course recommendations for user 682f8b0001761933b79bc3d3...
+2025-06-25 20:59:26,071 - INFO - GNN recommendations: 15
+2025-06-25 20:59:26,071 - INFO - Content-based recommendations: 15
+2025-06-25 20:59:26,071 - ERROR - Error fetching title for 6828d30acf45ad84b675ff1f: invalid literal for int() with base 10: '6828d30acf45ad84b675ff1f'
+2025-06-25 20:59:26,071 - ERROR - Error fetching title for 6828d30acf45ad84b675fc16: invalid literal for int() with base 10: '6828d30acf45ad84b675fc16'
+2025-06-25 20:59:26,071 - ERROR - Error fetching title for 6828d30acf45ad84b675fee9: invalid literal for int() with base 10: '6828d30acf45ad84b675fee9'
+2025-06-25 20:59:26,072 - ERROR - Error fetching title for 6828d30acf45ad84b675feea: invalid literal for int() with base 10: '6828d30acf45ad84b675feea'
+2025-06-25 20:59:26,072 - ERROR - Error fetching title for 6828d30dcf45ad84b675fffc: invalid literal for int() with base 10: '6828d30dcf45ad84b675fffc'
+2025-06-25 20:59:26,072 - ERROR - Error fetching title for 6828d30acf45ad84b675fc8d: invalid literal for int() with base 10: '6828d30acf45ad84b675fc8d'
+2025-06-25 20:59:26,072 - ERROR - Error fetching title for 6828d30acf45ad84b675fcc9: invalid literal for int() with base 10: '6828d30acf45ad84b675fcc9'
+2025-06-25 20:59:26,072 - ERROR - Error fetching title for 6828d30acf45ad84b675fd2d: invalid literal for int() with base 10: '6828d30acf45ad84b675fd2d'
+2025-06-25 20:59:26,072 - ERROR - Error fetching title for 6828d30acf45ad84b675ff5c: invalid literal for int() with base 10: '6828d30acf45ad84b675ff5c'
+2025-06-25 20:59:26,072 - ERROR - Error fetching title for 6828d30acf45ad84b675fea7: invalid literal for int() with base 10: '6828d30acf45ad84b675fea7'
+2025-06-25 20:59:26,072 - ERROR - Error fetching title for 6828d30acf45ad84b675fdd8: invalid literal for int() with base 10: '6828d30acf45ad84b675fdd8'
+2025-06-25 20:59:26,072 - ERROR - Error fetching title for 6828d30acf45ad84b675fe95: invalid literal for int() with base 10: '6828d30acf45ad84b675fe95'
+2025-06-25 20:59:26,072 - ERROR - Error fetching title for 6828d30acf45ad84b675fe03: invalid literal for int() with base 10: '6828d30acf45ad84b675fe03'
+2025-06-25 20:59:26,072 - ERROR - Error fetching title for 6828d30acf45ad84b675ff54: invalid literal for int() with base 10: '6828d30acf45ad84b675ff54'
+2025-06-25 20:59:26,072 - ERROR - Error fetching title for 6828d30acf45ad84b675fbab: invalid literal for int() with base 10: '6828d30acf45ad84b675fbab'
+2025-06-25 20:59:29,517 - INFO - Total candidates before MMR: 30
+2025-06-25 21:07:23,470 - INFO - Connected to MongoDB successfully.
+2025-06-25 21:07:23,471 - INFO - Loading data from MongoDB...
+2025-06-25 21:07:29,035 - INFO - Loaded data: 20 users, 1133 courses, 3513 articles
+2025-06-25 21:10:32,181 - INFO - Connected to MongoDB successfully.
+2025-06-25 21:10:32,181 - INFO - Loading data from MongoDB...
+2025-06-25 21:10:34,518 - INFO - Loaded data: 20 users, 1133 courses, 3513 articles
+2025-06-25 21:10:42,808 - INFO - Created graph with 30 edges
+2025-06-25 21:10:42,813 - INFO - Loading pre-trained embeddings...
+2025-06-25 21:10:42,935 - INFO - Loaded ../e-learning-platform/user_profiles.csv: 20 rows, 529 columns
+2025-06-25 21:10:42,936 - ERROR - Warning: File not found at 'user_profiles_articles.csv'.
+2025-06-25 21:10:43,681 - INFO - Loaded ../e-learning-platform/item_vectors_onehot.csv: 1133 rows, 337 columns
+2025-06-25 21:10:43,682 - ERROR - Warning: File not found at 'articles_profiles.csv'.
+2025-06-25 21:10:43,694 - INFO - Pre-trained embeddings loaded successfully.
+2025-06-25 21:10:43,694 - INFO - Initializing GNN model...
+2025-06-25 21:10:43,863 - INFO - Created 1133 course embeddings
+2025-06-25 21:10:43,864 - ERROR - Error loading model: [Errno 2] No such file or directory: 'gnn_model/lightgcn_model.pth'
+2025-06-25 21:10:43,864 - INFO - Continuing with randomly initialized GNN model weights
+2025-06-25 21:10:43,864 - INFO - Generating course recommendations for user 682f8b0001761933b79bc3d3...
+2025-06-25 21:10:43,930 - INFO - GNN recommendations: 15
+2025-06-25 21:10:43,931 - INFO - Content-based recommendations: 15
+2025-06-25 21:10:43,931 - ERROR - Error fetching title for 6828d30acf45ad84b675ff1f: invalid literal for int() with base 10: '6828d30acf45ad84b675ff1f'
+2025-06-25 21:10:43,931 - ERROR - Error fetching title for 6828d30acf45ad84b675fc16: invalid literal for int() with base 10: '6828d30acf45ad84b675fc16'
+2025-06-25 21:10:43,931 - ERROR - Error fetching title for 6828d30acf45ad84b675fee9: invalid literal for int() with base 10: '6828d30acf45ad84b675fee9'
+2025-06-25 21:10:43,931 - ERROR - Error fetching title for 6828d30acf45ad84b675fc43: invalid literal for int() with base 10: '6828d30acf45ad84b675fc43'
+2025-06-25 21:10:43,931 - ERROR - Error fetching title for 6828d30acf45ad84b675fcb9: invalid literal for int() with base 10: '6828d30acf45ad84b675fcb9'
+2025-06-25 21:10:43,931 - ERROR - Error fetching title for 6828d30acf45ad84b675fd8e: invalid literal for int() with base 10: '6828d30acf45ad84b675fd8e'
+2025-06-25 21:10:43,931 - ERROR - Error fetching title for 6828d30acf45ad84b675ff33: invalid literal for int() with base 10: '6828d30acf45ad84b675ff33'
+2025-06-25 21:10:43,931 - ERROR - Error fetching title for 6828d30acf45ad84b675fee6: invalid literal for int() with base 10: '6828d30acf45ad84b675fee6'
+2025-06-25 21:10:43,931 - ERROR - Error fetching title for 6828d30acf45ad84b675ff15: invalid literal for int() with base 10: '6828d30acf45ad84b675ff15'
+2025-06-25 21:10:43,931 - ERROR - Error fetching title for 6828d30acf45ad84b675fc51: invalid literal for int() with base 10: '6828d30acf45ad84b675fc51'
+2025-06-25 21:10:43,931 - ERROR - Error fetching title for 6828d30dcf45ad84b675ffea: invalid literal for int() with base 10: '6828d30dcf45ad84b675ffea'
+2025-06-25 21:10:43,931 - ERROR - Error fetching title for 6828d30acf45ad84b675fd46: invalid literal for int() with base 10: '6828d30acf45ad84b675fd46'
+2025-06-25 21:10:43,932 - ERROR - Error fetching title for 6828d30acf45ad84b675fd37: invalid literal for int() with base 10: '6828d30acf45ad84b675fd37'
+2025-06-25 21:10:43,932 - ERROR - Error fetching title for 6828d30acf45ad84b675fbf5: invalid literal for int() with base 10: '6828d30acf45ad84b675fbf5'
+2025-06-25 21:10:43,932 - ERROR - Error fetching title for 6828d30acf45ad84b675fe80: invalid literal for int() with base 10: '6828d30acf45ad84b675fe80'
+2025-06-25 21:10:44,676 - INFO - Total candidates before MMR: 30
+2025-06-25 21:11:08,704 - INFO - Connected to MongoDB successfully.
+2025-06-25 21:11:08,705 - INFO - Loading data from MongoDB...
+2025-06-25 21:11:09,444 - INFO - Loaded data: 20 users, 1133 courses, 3513 articles
+2025-06-25 21:11:12,252 - INFO - Created graph with 30 edges
+2025-06-25 21:11:12,259 - INFO - Loading pre-trained embeddings...
+2025-06-25 21:11:12,401 - INFO - Loaded ../e-learning-platform/user_profiles.csv: 20 rows, 529 columns
+2025-06-25 21:11:12,401 - ERROR - Warning: File not found at 'user_profiles_articles.csv'.
+2025-06-25 21:11:12,955 - INFO - Loaded ../e-learning-platform/item_vectors_onehot.csv: 1133 rows, 337 columns
+2025-06-25 21:11:12,955 - ERROR - Warning: File not found at 'articles_profiles.csv'.
+2025-06-25 21:11:12,965 - INFO - Pre-trained embeddings loaded successfully.
+2025-06-25 21:11:12,965 - INFO - Initializing GNN model...
+2025-06-25 21:11:13,060 - INFO - Created 1133 course embeddings
+2025-06-25 21:11:13,061 - ERROR - Error loading model: [Errno 2] No such file or directory: 'gnn_model/lightgcn_model.pth'
+2025-06-25 21:11:13,061 - INFO - Continuing with randomly initialized GNN model weights
+2025-06-25 21:11:13,061 - INFO - Generating course recommendations for user 682f8b0001761933b79bc3d3...
+2025-06-25 21:11:13,122 - INFO - GNN recommendations: 15
+2025-06-25 21:11:13,123 - INFO - Content-based recommendations: 15
+2025-06-25 21:11:13,123 - ERROR - Error fetching title for 6828d30acf45ad84b675ff1f: invalid literal for int() with base 10: '6828d30acf45ad84b675ff1f'
+2025-06-25 21:11:13,123 - ERROR - Error fetching title for 6828d30acf45ad84b675fc16: invalid literal for int() with base 10: '6828d30acf45ad84b675fc16'
+2025-06-25 21:11:13,123 - ERROR - Error fetching title for 6828d30acf45ad84b675fee9: invalid literal for int() with base 10: '6828d30acf45ad84b675fee9'
+2025-06-25 21:11:13,123 - ERROR - Error fetching title for 6828d30dcf45ad84b675ff8c: invalid literal for int() with base 10: '6828d30dcf45ad84b675ff8c'
+2025-06-25 21:11:13,123 - ERROR - Error fetching title for 6828d30acf45ad84b675fe8a: invalid literal for int() with base 10: '6828d30acf45ad84b675fe8a'
+2025-06-25 21:11:13,123 - ERROR - Error fetching title for 6828d30acf45ad84b675fc9c: invalid literal for int() with base 10: '6828d30acf45ad84b675fc9c'
+2025-06-25 21:11:13,123 - ERROR - Error fetching title for 6828d30acf45ad84b675fdf2: invalid literal for int() with base 10: '6828d30acf45ad84b675fdf2'
+2025-06-25 21:11:13,123 - ERROR - Error fetching title for 6828d30acf45ad84b675feb0: invalid literal for int() with base 10: '6828d30acf45ad84b675feb0'
+2025-06-25 21:11:13,123 - ERROR - Error fetching title for 6828d30acf45ad84b675fcde: invalid literal for int() with base 10: '6828d30acf45ad84b675fcde'
+2025-06-25 21:11:13,123 - ERROR - Error fetching title for 6828d30acf45ad84b675fd81: invalid literal for int() with base 10: '6828d30acf45ad84b675fd81'
+2025-06-25 21:11:13,123 - ERROR - Error fetching title for 6828d30acf45ad84b675fc46: invalid literal for int() with base 10: '6828d30acf45ad84b675fc46'
+2025-06-25 21:11:13,123 - ERROR - Error fetching title for 6828d30acf45ad84b675fbf1: invalid literal for int() with base 10: '6828d30acf45ad84b675fbf1'
+2025-06-25 21:11:13,124 - ERROR - Error fetching title for 6828d30acf45ad84b675fe77: invalid literal for int() with base 10: '6828d30acf45ad84b675fe77'
+2025-06-25 21:11:13,124 - ERROR - Error fetching title for 6828d30acf45ad84b675fbbc: invalid literal for int() with base 10: '6828d30acf45ad84b675fbbc'
+2025-06-25 21:11:13,124 - ERROR - Error fetching title for 6828d30acf45ad84b675fcbe: invalid literal for int() with base 10: '6828d30acf45ad84b675fcbe'
+2025-06-25 21:11:13,691 - INFO - Total candidates before MMR: 30
+2025-06-25 21:11:36,142 - INFO - Connected to MongoDB successfully.
+2025-06-25 21:11:36,142 - INFO - Loading data from MongoDB...
+2025-06-25 21:11:36,994 - INFO - Loaded data: 20 users, 1133 courses, 3513 articles
+2025-06-25 21:11:44,055 - INFO - Created graph with 30 edges
+2025-06-25 21:11:44,064 - INFO - Loading pre-trained embeddings...
+2025-06-25 21:11:44,198 - INFO - Loaded ../e-learning-platform/user_profiles.csv: 20 rows, 529 columns
+2025-06-25 21:11:44,199 - ERROR - Warning: File not found at 'user_profiles_articles.csv'.
+2025-06-25 21:11:44,905 - INFO - Loaded ../e-learning-platform/item_vectors_onehot.csv: 1133 rows, 337 columns
+2025-06-25 21:11:44,907 - ERROR - Warning: File not found at 'articles_profiles.csv'.
+2025-06-25 21:11:44,931 - INFO - Pre-trained embeddings loaded successfully.
+2025-06-25 21:11:44,931 - INFO - Initializing GNN model...
+2025-06-25 21:11:45,026 - INFO - Created 1133 course embeddings
+2025-06-25 21:11:45,027 - ERROR - Error loading model: [Errno 2] No such file or directory: 'gnn_model/lightgcn_model.pth'
+2025-06-25 21:11:45,027 - INFO - Continuing with randomly initialized GNN model weights
+2025-06-25 21:11:45,027 - INFO - Generating course recommendations for user 682f8b0001761933b79bc3d3...
+2025-06-25 21:11:45,089 - INFO - GNN recommendations: 15
+2025-06-25 21:11:45,089 - INFO - Content-based recommendations: 15
+2025-06-25 21:11:45,089 - ERROR - Error fetching title for 6828d30acf45ad84b675fee9: invalid literal for int() with base 10: '6828d30acf45ad84b675fee9'
+2025-06-25 21:11:45,089 - ERROR - Error fetching title for 6828d30acf45ad84b675fc16: invalid literal for int() with base 10: '6828d30acf45ad84b675fc16'
+2025-06-25 21:11:45,089 - ERROR - Error fetching title for 6828d30acf45ad84b675ff1f: invalid literal for int() with base 10: '6828d30acf45ad84b675ff1f'
+2025-06-25 21:11:45,089 - ERROR - Error fetching title for 6828d30acf45ad84b675fe74: invalid literal for int() with base 10: '6828d30acf45ad84b675fe74'
+2025-06-25 21:11:45,089 - ERROR - Error fetching title for 6828d30acf45ad84b675fcb9: invalid literal for int() with base 10: '6828d30acf45ad84b675fcb9'
+2025-06-25 21:11:45,089 - ERROR - Error fetching title for 6828d30acf45ad84b675fced: invalid literal for int() with base 10: '6828d30acf45ad84b675fced'
+2025-06-25 21:11:45,089 - ERROR - Error fetching title for 6828d30acf45ad84b675fbb6: invalid literal for int() with base 10: '6828d30acf45ad84b675fbb6'
+2025-06-25 21:11:45,090 - ERROR - Error fetching title for 6828d30acf45ad84b675fc9c: invalid literal for int() with base 10: '6828d30acf45ad84b675fc9c'
+2025-06-25 21:11:45,090 - ERROR - Error fetching title for 6828d30acf45ad84b675fca6: invalid literal for int() with base 10: '6828d30acf45ad84b675fca6'
+2025-06-25 21:11:45,090 - ERROR - Error fetching title for 6828d30acf45ad84b675ff0b: invalid literal for int() with base 10: '6828d30acf45ad84b675ff0b'
+2025-06-25 21:11:45,090 - ERROR - Error fetching title for 6828d30acf45ad84b675fbfb: invalid literal for int() with base 10: '6828d30acf45ad84b675fbfb'
+2025-06-25 21:11:45,090 - ERROR - Error fetching title for 6828d30acf45ad84b675fb97: invalid literal for int() with base 10: '6828d30acf45ad84b675fb97'
+2025-06-25 21:11:45,090 - ERROR - Error fetching title for 6828d30acf45ad84b675fe40: invalid literal for int() with base 10: '6828d30acf45ad84b675fe40'
+2025-06-25 21:11:45,090 - ERROR - Error fetching title for 6828d30acf45ad84b675fea5: invalid literal for int() with base 10: '6828d30acf45ad84b675fea5'
+2025-06-25 21:11:45,090 - ERROR - Error fetching title for 6828d30acf45ad84b675fd83: invalid literal for int() with base 10: '6828d30acf45ad84b675fd83'
+2025-06-25 21:11:45,613 - INFO - Total candidates before MMR: 30
+2025-06-25 21:15:55,357 - INFO - Connected to MongoDB successfully.
+2025-06-25 21:15:55,357 - INFO - Loading data from MongoDB...
+2025-06-25 21:16:06,679 - INFO - Loaded data: 20 users, 1133 courses, 3513 articles
+2025-06-25 21:17:08,046 - INFO - Connected to MongoDB successfully.
+2025-06-25 21:17:08,047 - INFO - Loading data from MongoDB...
+2025-06-25 21:17:12,431 - INFO - Loaded data: 20 users, 1133 courses, 3513 articles
+2025-06-25 21:17:25,333 - INFO - Created graph with 30 edges
+2025-06-25 21:17:25,338 - INFO - Loading pre-trained embeddings...
+2025-06-25 21:17:25,456 - INFO - Loaded ../e-learning-platform/user_profiles.csv: 20 rows, 529 columns
+2025-06-25 21:17:25,457 - ERROR - Warning: File not found at 'user_profiles_articles.csv'.
+2025-06-25 21:17:25,968 - INFO - Loaded ../e-learning-platform/item_vectors_onehot.csv: 1133 rows, 337 columns
+2025-06-25 21:17:25,969 - ERROR - Warning: File not found at 'articles_profiles.csv'.
+2025-06-25 21:17:25,987 - INFO - Pre-trained embeddings loaded successfully.
+2025-06-25 21:17:25,987 - INFO - Initializing GNN model...
+2025-06-25 21:17:26,139 - INFO - Created 1133 course embeddings
+2025-06-25 21:17:26,139 - ERROR - Error loading model: [Errno 2] No such file or directory: 'gnn_model/lightgcn_model.pth'
+2025-06-25 21:17:26,139 - INFO - Continuing with randomly initialized GNN model weights
+2025-06-25 21:17:26,139 - INFO - Generating course recommendations for user 682f8b0001761933b79bc3d3...
+2025-06-25 21:17:26,207 - INFO - GNN recommendations: 15
+2025-06-25 21:17:26,207 - INFO - Content-based recommendations: 15
+2025-06-25 21:17:26,207 - ERROR - Error fetching title for 6828d30acf45ad84b675fc16: invalid literal for int() with base 10: '6828d30acf45ad84b675fc16'
+2025-06-25 21:17:26,207 - ERROR - Error fetching title for 6828d30acf45ad84b675ff1f: invalid literal for int() with base 10: '6828d30acf45ad84b675ff1f'
+2025-06-25 21:17:26,207 - ERROR - Error fetching title for 6828d30acf45ad84b675fee9: invalid literal for int() with base 10: '6828d30acf45ad84b675fee9'
+2025-06-25 21:17:26,207 - ERROR - Error fetching title for 6828d30acf45ad84b675fbaf: invalid literal for int() with base 10: '6828d30acf45ad84b675fbaf'
+2025-06-25 21:17:26,208 - ERROR - Error fetching title for 6828d30acf45ad84b675fcba: invalid literal for int() with base 10: '6828d30acf45ad84b675fcba'
+2025-06-25 21:17:26,208 - ERROR - Error fetching title for 6828d30acf45ad84b675fcf9: invalid literal for int() with base 10: '6828d30acf45ad84b675fcf9'
+2025-06-25 21:17:26,208 - ERROR - Error fetching title for 6828d30acf45ad84b675ff69: invalid literal for int() with base 10: '6828d30acf45ad84b675ff69'
+2025-06-25 21:17:26,208 - ERROR - Error fetching title for 6828d30acf45ad84b675fe80: invalid literal for int() with base 10: '6828d30acf45ad84b675fe80'
+2025-06-25 21:17:26,208 - ERROR - Error fetching title for 6828d30acf45ad84b675fe1d: invalid literal for int() with base 10: '6828d30acf45ad84b675fe1d'
+2025-06-25 21:17:26,208 - ERROR - Error fetching title for 6828d30acf45ad84b675fd83: invalid literal for int() with base 10: '6828d30acf45ad84b675fd83'
+2025-06-25 21:17:26,208 - ERROR - Error fetching title for 6828d30acf45ad84b675ff40: invalid literal for int() with base 10: '6828d30acf45ad84b675ff40'
+2025-06-25 21:17:26,208 - ERROR - Error fetching title for 6828d30dcf45ad84b675ff97: invalid literal for int() with base 10: '6828d30dcf45ad84b675ff97'
+2025-06-25 21:17:26,208 - ERROR - Error fetching title for 6828d30dcf45ad84b675ffad: invalid literal for int() with base 10: '6828d30dcf45ad84b675ffad'
+2025-06-25 21:17:26,208 - ERROR - Error fetching title for 6828d30acf45ad84b675fd5a: invalid literal for int() with base 10: '6828d30acf45ad84b675fd5a'
+2025-06-25 21:17:26,208 - ERROR - Error fetching title for 6828d30acf45ad84b675fe71: invalid literal for int() with base 10: '6828d30acf45ad84b675fe71'
+2025-06-25 21:17:26,941 - INFO - Total candidates before MMR: 30
+2025-06-25 21:17:45,738 - INFO - Connected to MongoDB successfully.
+2025-06-25 21:17:45,739 - INFO - Loading data from MongoDB...
+2025-06-25 21:17:47,643 - INFO - Loaded data: 20 users, 1133 courses, 3513 articles
+2025-06-25 21:17:58,055 - INFO - Created graph with 30 edges
+2025-06-25 21:17:58,060 - INFO - Loading pre-trained embeddings...
+2025-06-25 21:17:58,180 - INFO - Loaded ../e-learning-platform/user_profiles.csv: 20 rows, 529 columns
+2025-06-25 21:17:58,181 - ERROR - Warning: File not found at 'user_profiles_articles.csv'.
+2025-06-25 21:17:58,712 - INFO - Loaded ../e-learning-platform/item_vectors_onehot.csv: 1133 rows, 337 columns
+2025-06-25 21:17:58,712 - ERROR - Warning: File not found at 'articles_profiles.csv'.
+2025-06-25 21:17:58,731 - INFO - Pre-trained embeddings loaded successfully.
+2025-06-25 21:17:58,731 - INFO - Initializing GNN model...
+2025-06-25 21:17:58,827 - INFO - Created 1133 course embeddings
+2025-06-25 21:17:58,827 - ERROR - Error loading model: [Errno 2] No such file or directory: 'gnn_model/lightgcn_model.pth'
+2025-06-25 21:17:58,827 - INFO - Continuing with randomly initialized GNN model weights
+2025-06-25 21:17:58,827 - INFO - Generating course recommendations for user 682f8b0001761933b79bc3d3...
+2025-06-25 21:17:58,889 - INFO - GNN recommendations: 15
+2025-06-25 21:17:58,889 - INFO - Content-based recommendations: 15
+2025-06-25 21:17:58,889 - ERROR - Error fetching title for 6828d30acf45ad84b675ff1f: invalid literal for int() with base 10: '6828d30acf45ad84b675ff1f'
+2025-06-25 21:17:58,889 - ERROR - Error fetching title for 6828d30acf45ad84b675fc16: invalid literal for int() with base 10: '6828d30acf45ad84b675fc16'
+2025-06-25 21:17:58,889 - ERROR - Error fetching title for 6828d30acf45ad84b675fee9: invalid literal for int() with base 10: '6828d30acf45ad84b675fee9'
+2025-06-25 21:17:58,890 - ERROR - Error fetching title for 6828d30acf45ad84b675fcf5: invalid literal for int() with base 10: '6828d30acf45ad84b675fcf5'
+2025-06-25 21:17:58,890 - ERROR - Error fetching title for 6828d30acf45ad84b675fc8d: invalid literal for int() with base 10: '6828d30acf45ad84b675fc8d'
+2025-06-25 21:17:58,890 - ERROR - Error fetching title for 6828d30acf45ad84b675fd38: invalid literal for int() with base 10: '6828d30acf45ad84b675fd38'
+2025-06-25 21:17:58,890 - ERROR - Error fetching title for 6828d30acf45ad84b675fe54: invalid literal for int() with base 10: '6828d30acf45ad84b675fe54'
+2025-06-25 21:17:58,890 - ERROR - Error fetching title for 6828d30dcf45ad84b675ffe8: invalid literal for int() with base 10: '6828d30dcf45ad84b675ffe8'
+2025-06-25 21:17:58,890 - ERROR - Error fetching title for 6828d30dcf45ad84b675ffce: invalid literal for int() with base 10: '6828d30dcf45ad84b675ffce'
+2025-06-25 21:17:58,890 - ERROR - Error fetching title for 6828d30acf45ad84b675fd4b: invalid literal for int() with base 10: '6828d30acf45ad84b675fd4b'
+2025-06-25 21:17:58,890 - ERROR - Error fetching title for 6828d30acf45ad84b675feda: invalid literal for int() with base 10: '6828d30acf45ad84b675feda'
+2025-06-25 21:17:58,890 - ERROR - Error fetching title for 6828d30acf45ad84b675ff14: invalid literal for int() with base 10: '6828d30acf45ad84b675ff14'
+2025-06-25 21:17:58,890 - ERROR - Error fetching title for 6828d30acf45ad84b675fef4: invalid literal for int() with base 10: '6828d30acf45ad84b675fef4'
+2025-06-25 21:17:58,890 - ERROR - Error fetching title for 6828d30acf45ad84b675ff69: invalid literal for int() with base 10: '6828d30acf45ad84b675ff69'
+2025-06-25 21:17:58,890 - ERROR - Error fetching title for 6828d30acf45ad84b675fe8c: invalid literal for int() with base 10: '6828d30acf45ad84b675fe8c'
+2025-06-25 21:17:59,557 - INFO - Total candidates before MMR: 30
+2025-06-25 21:22:03,010 - INFO - Connected to MongoDB successfully.
+2025-06-25 21:22:03,011 - INFO - Loading data from MongoDB...
+2025-06-25 21:22:03,673 - INFO - Loaded data: 20 users, 1133 courses, 3513 articles
+2025-06-25 21:22:08,586 - INFO - Created graph with 30 edges
+2025-06-25 21:22:08,592 - INFO - Loading pre-trained embeddings...
+2025-06-25 21:22:08,740 - INFO - Loaded ../e-learning-platform/user_profiles.csv: 20 rows, 529 columns
+2025-06-25 21:22:08,741 - ERROR - Warning: File not found at 'user_profiles_articles.csv'.
+2025-06-25 21:22:09,392 - INFO - Loaded ../e-learning-platform/item_vectors_onehot.csv: 1133 rows, 337 columns
+2025-06-25 21:22:09,393 - ERROR - Warning: File not found at 'articles_profiles.csv'.
+2025-06-25 21:22:09,415 - INFO - Pre-trained embeddings loaded successfully.
+2025-06-25 21:22:09,415 - INFO - Initializing GNN model...
+2025-06-25 21:22:09,553 - INFO - Created 1133 course embeddings
+2025-06-25 21:22:09,554 - ERROR - Error loading model: [Errno 2] No such file or directory: 'gnn_model/lightgcn_model.pth'
+2025-06-25 21:22:09,554 - INFO - Continuing with randomly initialized GNN model weights
+2025-06-25 21:22:09,554 - INFO - Generating course recommendations for user 682f8b0001761933b79bc3d3...
+2025-06-25 21:22:09,626 - INFO - GNN recommendations: 15
+2025-06-25 21:22:09,626 - INFO - Content-based recommendations: 15
+2025-06-25 21:22:09,627 - ERROR - Error fetching title for 6828d30acf45ad84b675ff1f: invalid literal for int() with base 10: '6828d30acf45ad84b675ff1f'
+2025-06-25 21:22:09,627 - ERROR - Error fetching title for 6828d30acf45ad84b675fee9: invalid literal for int() with base 10: '6828d30acf45ad84b675fee9'
+2025-06-25 21:22:09,627 - ERROR - Error fetching title for 6828d30acf45ad84b675fc16: invalid literal for int() with base 10: '6828d30acf45ad84b675fc16'
+2025-06-25 21:22:09,627 - ERROR - Error fetching title for 6828d30acf45ad84b675fc43: invalid literal for int() with base 10: '6828d30acf45ad84b675fc43'
+2025-06-25 21:22:09,627 - ERROR - Error fetching title for 6828d30dcf45ad84b675fff4: invalid literal for int() with base 10: '6828d30dcf45ad84b675fff4'
+2025-06-25 21:22:09,627 - ERROR - Error fetching title for 6828d30acf45ad84b675ff6c: invalid literal for int() with base 10: '6828d30acf45ad84b675ff6c'
+2025-06-25 21:22:09,627 - ERROR - Error fetching title for 6828d30acf45ad84b675fbae: invalid literal for int() with base 10: '6828d30acf45ad84b675fbae'
+2025-06-25 21:22:09,627 - ERROR - Error fetching title for 6828d30acf45ad84b675ff71: invalid literal for int() with base 10: '6828d30acf45ad84b675ff71'
+2025-06-25 21:22:09,627 - ERROR - Error fetching title for 6828d30acf45ad84b675fe30: invalid literal for int() with base 10: '6828d30acf45ad84b675fe30'
+2025-06-25 21:22:09,628 - ERROR - Error fetching title for 6828d30acf45ad84b675fe4a: invalid literal for int() with base 10: '6828d30acf45ad84b675fe4a'
+2025-06-25 21:22:09,628 - ERROR - Error fetching title for 6828d30acf45ad84b675fcf3: invalid literal for int() with base 10: '6828d30acf45ad84b675fcf3'
+2025-06-25 21:22:09,628 - ERROR - Error fetching title for 6828d30acf45ad84b675fcb1: invalid literal for int() with base 10: '6828d30acf45ad84b675fcb1'
+2025-06-25 21:22:09,628 - ERROR - Error fetching title for 6828d30acf45ad84b675feda: invalid literal for int() with base 10: '6828d30acf45ad84b675feda'
+2025-06-25 21:22:09,628 - ERROR - Error fetching title for 6828d30acf45ad84b675ff4c: invalid literal for int() with base 10: '6828d30acf45ad84b675ff4c'
+2025-06-25 21:22:09,628 - ERROR - Error fetching title for 6828d30acf45ad84b675fdb6: invalid literal for int() with base 10: '6828d30acf45ad84b675fdb6'
+2025-06-25 21:22:10,155 - INFO - Total candidates before MMR: 30
+2025-06-25 21:23:12,189 - INFO - Connected to MongoDB successfully.
+2025-06-25 21:23:12,190 - INFO - Loading data from MongoDB...
+2025-06-25 21:23:13,079 - INFO - Loaded data: 20 users, 1133 courses, 3513 articles
+2025-06-25 21:23:17,874 - INFO - Created graph with 30 edges
+2025-06-25 21:23:17,882 - INFO - Loading pre-trained embeddings...
+2025-06-25 21:23:18,031 - INFO - Loaded ../e-learning-platform/user_profiles.csv: 20 rows, 529 columns
+2025-06-25 21:23:18,031 - ERROR - Warning: File not found at 'user_profiles_articles.csv'.
+2025-06-25 21:23:18,618 - INFO - Loaded ../e-learning-platform/item_vectors_onehot.csv: 1133 rows, 337 columns
+2025-06-25 21:23:18,618 - ERROR - Warning: File not found at 'articles_profiles.csv'.
+2025-06-25 21:23:18,642 - INFO - Pre-trained embeddings loaded successfully.
+2025-06-25 21:23:18,642 - INFO - Initializing GNN model...
+2025-06-25 21:23:18,768 - INFO - Created 1133 course embeddings
+2025-06-25 21:23:18,768 - ERROR - Error loading model: [Errno 2] No such file or directory: 'gnn_model/lightgcn_model.pth'
+2025-06-25 21:23:18,768 - INFO - Continuing with randomly initialized GNN model weights
+2025-06-25 21:23:18,768 - INFO - Generating course recommendations for user 682f8b0001761933b79bc3d3...
+2025-06-25 21:23:18,841 - INFO - GNN recommendations: 15
+2025-06-25 21:23:18,841 - INFO - Content-based recommendations: 15
+2025-06-25 21:23:18,841 - ERROR - Error fetching title for 6828d30acf45ad84b675fee9: invalid literal for int() with base 10: '6828d30acf45ad84b675fee9'
+2025-06-25 21:23:18,841 - ERROR - Error fetching title for 6828d30acf45ad84b675ff1f: invalid literal for int() with base 10: '6828d30acf45ad84b675ff1f'
+2025-06-25 21:23:18,841 - ERROR - Error fetching title for 6828d30acf45ad84b675fc16: invalid literal for int() with base 10: '6828d30acf45ad84b675fc16'
+2025-06-25 21:23:18,841 - ERROR - Error fetching title for 6828d30acf45ad84b675fdfa: invalid literal for int() with base 10: '6828d30acf45ad84b675fdfa'
+2025-06-25 21:23:18,841 - ERROR - Error fetching title for 6828d30acf45ad84b675fb91: invalid literal for int() with base 10: '6828d30acf45ad84b675fb91'
+2025-06-25 21:23:18,841 - ERROR - Error fetching title for 6828d30acf45ad84b675fe4d: invalid literal for int() with base 10: '6828d30acf45ad84b675fe4d'
+2025-06-25 21:23:18,841 - ERROR - Error fetching title for 6828d30acf45ad84b675fd21: invalid literal for int() with base 10: '6828d30acf45ad84b675fd21'
+2025-06-25 21:23:18,842 - ERROR - Error fetching title for 6828d30acf45ad84b675fdd7: invalid literal for int() with base 10: '6828d30acf45ad84b675fdd7'
+2025-06-25 21:23:18,842 - ERROR - Error fetching title for 6828d30acf45ad84b675fdee: invalid literal for int() with base 10: '6828d30acf45ad84b675fdee'
+2025-06-25 21:23:18,842 - ERROR - Error fetching title for 6828d30acf45ad84b675fd4a: invalid literal for int() with base 10: '6828d30acf45ad84b675fd4a'
+2025-06-25 21:23:18,842 - ERROR - Error fetching title for 6828d30acf45ad84b675fbc7: invalid literal for int() with base 10: '6828d30acf45ad84b675fbc7'
+2025-06-25 21:23:18,843 - ERROR - Error fetching title for 6828d30acf45ad84b675fec5: invalid literal for int() with base 10: '6828d30acf45ad84b675fec5'
+2025-06-25 21:23:18,843 - ERROR - Error fetching title for 6828d30acf45ad84b675ff73: invalid literal for int() with base 10: '6828d30acf45ad84b675ff73'
+2025-06-25 21:23:18,843 - ERROR - Error fetching title for 6828d30acf45ad84b675fc69: invalid literal for int() with base 10: '6828d30acf45ad84b675fc69'
+2025-06-25 21:23:18,843 - ERROR - Error fetching title for 6828d30acf45ad84b675fe3e: invalid literal for int() with base 10: '6828d30acf45ad84b675fe3e'
+2025-06-25 21:23:19,571 - INFO - Total candidates before MMR: 30
+2025-06-25 21:25:14,979 - INFO - Connected to MongoDB successfully.
+2025-06-25 21:25:14,980 - INFO - Loading data from MongoDB...
+2025-06-25 21:25:15,610 - INFO - Loaded data: 20 users, 1133 courses, 3513 articles
+2025-06-25 21:26:11,864 - INFO - Connected to MongoDB successfully.
+2025-06-25 21:26:11,864 - INFO - Loading data from MongoDB...
+2025-06-25 21:26:13,112 - INFO - Loaded data: 20 users, 1133 courses, 3513 articles
+2025-06-25 21:26:20,979 - INFO - Created graph with 30 edges
+2025-06-25 21:26:20,985 - INFO - Loading pre-trained embeddings...
+2025-06-25 21:26:21,115 - INFO - Loaded ../e-learning-platform/user_profiles.csv: 20 rows, 529 columns
+2025-06-25 21:26:21,115 - ERROR - Warning: File not found at 'user_profiles_articles.csv'.
+2025-06-25 21:26:21,676 - INFO - Loaded ../e-learning-platform/item_vectors_onehot.csv: 1133 rows, 337 columns
+2025-06-25 21:26:21,677 - ERROR - Warning: File not found at 'articles_profiles.csv'.
+2025-06-25 21:26:21,703 - INFO - Pre-trained embeddings loaded successfully.
+2025-06-25 21:26:21,703 - INFO - Initializing GNN model...
+2025-06-25 21:26:21,869 - INFO - Created 1133 course embeddings
+2025-06-25 21:26:21,870 - ERROR - Error loading model: [Errno 2] No such file or directory: 'gnn_model/lightgcn_model.pth'
+2025-06-25 21:26:21,870 - INFO - Continuing with randomly initialized GNN model weights
+2025-06-25 21:26:21,870 - INFO - Generating course recommendations for user 682f8b0001761933b79bc3d3...
+2025-06-25 21:26:21,954 - INFO - GNN recommendations: 15
+2025-06-25 21:26:21,955 - INFO - Content-based recommendations: 15
+2025-06-25 21:26:21,955 - ERROR - Error fetching title for 6828d30acf45ad84b675fc16: invalid literal for int() with base 10: '6828d30acf45ad84b675fc16'
+2025-06-25 21:26:21,955 - ERROR - Error fetching title for 6828d30acf45ad84b675fee9: invalid literal for int() with base 10: '6828d30acf45ad84b675fee9'
+2025-06-25 21:26:21,955 - ERROR - Error fetching title for 6828d30acf45ad84b675ff1f: invalid literal for int() with base 10: '6828d30acf45ad84b675ff1f'
+2025-06-25 21:26:21,955 - ERROR - Error fetching title for 6828d30acf45ad84b675fce2: invalid literal for int() with base 10: '6828d30acf45ad84b675fce2'
+2025-06-25 21:26:21,955 - ERROR - Error fetching title for 6828d30dcf45ad84b675ffaa: invalid literal for int() with base 10: '6828d30dcf45ad84b675ffaa'
+2025-06-25 21:26:21,955 - ERROR - Error fetching title for 6828d30acf45ad84b675fc4b: invalid literal for int() with base 10: '6828d30acf45ad84b675fc4b'
+2025-06-25 21:26:21,955 - ERROR - Error fetching title for 6828d30acf45ad84b675fc1e: invalid literal for int() with base 10: '6828d30acf45ad84b675fc1e'
+2025-06-25 21:26:21,955 - ERROR - Error fetching title for 6828d30acf45ad84b675fdb5: invalid literal for int() with base 10: '6828d30acf45ad84b675fdb5'
+2025-06-25 21:26:21,955 - ERROR - Error fetching title for 6828d30acf45ad84b675fc9d: invalid literal for int() with base 10: '6828d30acf45ad84b675fc9d'
+2025-06-25 21:26:21,955 - ERROR - Error fetching title for 6828d30acf45ad84b675fd17: invalid literal for int() with base 10: '6828d30acf45ad84b675fd17'
+2025-06-25 21:26:21,955 - ERROR - Error fetching title for 6828d30acf45ad84b675fc15: invalid literal for int() with base 10: '6828d30acf45ad84b675fc15'
+2025-06-25 21:26:21,956 - ERROR - Error fetching title for 6828d30acf45ad84b675fba0: invalid literal for int() with base 10: '6828d30acf45ad84b675fba0'
+2025-06-25 21:26:21,956 - ERROR - Error fetching title for 6828d30acf45ad84b675fd0c: invalid literal for int() with base 10: '6828d30acf45ad84b675fd0c'
+2025-06-25 21:26:21,956 - ERROR - Error fetching title for 6828d30acf45ad84b675ff3e: invalid literal for int() with base 10: '6828d30acf45ad84b675ff3e'
+2025-06-25 21:26:21,956 - ERROR - Error fetching title for 6828d30acf45ad84b675fcee: invalid literal for int() with base 10: '6828d30acf45ad84b675fcee'
+2025-06-25 21:26:23,055 - INFO - Total candidates before MMR: 30
+2025-06-25 21:30:50,101 - INFO - Connected to MongoDB successfully.
+2025-06-25 21:30:50,102 - INFO - Loading data from MongoDB...
+2025-06-25 21:30:51,374 - INFO - Loaded data: 20 users, 1133 courses, 3513 articles
+2025-06-25 21:30:58,697 - INFO - Created graph with 30 edges
+2025-06-25 21:30:58,704 - INFO - Loading pre-trained embeddings...
+2025-06-25 21:30:59,450 - INFO - Loaded ../e-learning-platform/user_profiles.csv: 20 rows, 529 columns
+2025-06-25 21:30:59,451 - ERROR - Warning: File not found at 'user_profiles_articles.csv'.
+2025-06-25 21:31:00,096 - INFO - Loaded ../e-learning-platform/item_vectors_onehot.csv: 1133 rows, 337 columns
+2025-06-25 21:31:00,096 - ERROR - Warning: File not found at 'articles_profiles.csv'.
+2025-06-25 21:31:00,112 - INFO - Pre-trained embeddings loaded successfully.
+2025-06-25 21:31:00,113 - INFO - Initializing GNN model...
+2025-06-25 21:31:00,246 - INFO - Created 1133 course embeddings
+2025-06-25 21:31:00,247 - ERROR - Error loading model: [Errno 2] No such file or directory: 'gnn_model/lightgcn_model.pth'
+2025-06-25 21:31:00,247 - INFO - Continuing with randomly initialized GNN model weights
+2025-06-25 21:31:00,247 - INFO - Generating course recommendations for user 682f8b0001761933b79bc3d3...
+2025-06-25 21:31:00,310 - INFO - GNN recommendations: 15
+2025-06-25 21:31:00,310 - INFO - Content-based recommendations: 15
+2025-06-25 21:31:00,310 - ERROR - Error fetching title for 6828d30acf45ad84b675ff1f: invalid literal for int() with base 10: '6828d30acf45ad84b675ff1f'
+2025-06-25 21:31:00,310 - ERROR - Error fetching title for 6828d30acf45ad84b675fc16: invalid literal for int() with base 10: '6828d30acf45ad84b675fc16'
+2025-06-25 21:31:00,310 - ERROR - Error fetching title for 6828d30acf45ad84b675fee9: invalid literal for int() with base 10: '6828d30acf45ad84b675fee9'
+2025-06-25 21:31:00,310 - ERROR - Error fetching title for 6828d30acf45ad84b675fce0: invalid literal for int() with base 10: '6828d30acf45ad84b675fce0'
+2025-06-25 21:31:00,310 - ERROR - Error fetching title for 6828d30acf45ad84b675febf: invalid literal for int() with base 10: '6828d30acf45ad84b675febf'
+2025-06-25 21:31:00,310 - ERROR - Error fetching title for 6828d30acf45ad84b675ff53: invalid literal for int() with base 10: '6828d30acf45ad84b675ff53'
+2025-06-25 21:31:00,311 - ERROR - Error fetching title for 6828d30dcf45ad84b675ffa6: invalid literal for int() with base 10: '6828d30dcf45ad84b675ffa6'
+2025-06-25 21:31:00,311 - ERROR - Error fetching title for 6828d30acf45ad84b675fe2c: invalid literal for int() with base 10: '6828d30acf45ad84b675fe2c'
+2025-06-25 21:31:00,311 - ERROR - Error fetching title for 6828d30acf45ad84b675fbb1: invalid literal for int() with base 10: '6828d30acf45ad84b675fbb1'
+2025-06-25 21:31:00,311 - ERROR - Error fetching title for 6828d30acf45ad84b675fca8: invalid literal for int() with base 10: '6828d30acf45ad84b675fca8'
+2025-06-25 21:31:00,311 - ERROR - Error fetching title for 6828d30acf45ad84b675fc63: invalid literal for int() with base 10: '6828d30acf45ad84b675fc63'
+2025-06-25 21:31:00,311 - ERROR - Error fetching title for 6828d30dcf45ad84b675ffcd: invalid literal for int() with base 10: '6828d30dcf45ad84b675ffcd'
+2025-06-25 21:31:00,311 - ERROR - Error fetching title for 6828d30acf45ad84b675fc51: invalid literal for int() with base 10: '6828d30acf45ad84b675fc51'
+2025-06-25 21:31:00,311 - ERROR - Error fetching title for 6828d30acf45ad84b675fcef: invalid literal for int() with base 10: '6828d30acf45ad84b675fcef'
+2025-06-25 21:31:00,312 - ERROR - Error fetching title for 6828d30acf45ad84b675ff3e: invalid literal for int() with base 10: '6828d30acf45ad84b675ff3e'
+2025-06-25 21:31:00,858 - INFO - Total candidates before MMR: 30
+2025-06-25 21:31:22,650 - INFO - Connected to MongoDB successfully.
+2025-06-25 21:31:22,650 - INFO - Loading data from MongoDB...
+2025-06-25 21:31:23,425 - INFO - Loaded data: 20 users, 1133 courses, 3513 articles
+2025-06-25 21:31:26,997 - INFO - Created graph with 30 edges
+2025-06-25 21:31:27,003 - INFO - Loading pre-trained embeddings...
+2025-06-25 21:31:27,117 - INFO - Loaded ../e-learning-platform/user_profiles.csv: 20 rows, 529 columns
+2025-06-25 21:31:27,118 - ERROR - Warning: File not found at 'user_profiles_articles.csv'.
+2025-06-25 21:31:27,710 - INFO - Loaded ../e-learning-platform/item_vectors_onehot.csv: 1133 rows, 337 columns
+2025-06-25 21:31:27,711 - ERROR - Warning: File not found at 'articles_profiles.csv'.
+2025-06-25 21:31:27,712 - INFO - Pre-trained embeddings loaded successfully.
+2025-06-25 21:31:27,712 - INFO - Initializing GNN model...
+2025-06-25 21:31:27,786 - INFO - Created 1133 course embeddings
+2025-06-25 21:31:27,786 - ERROR - Error loading model: [Errno 2] No such file or directory: 'gnn_model/lightgcn_model.pth'
+2025-06-25 21:31:27,787 - INFO - Continuing with randomly initialized GNN model weights
+2025-06-25 21:31:27,787 - INFO - Generating course recommendations for user 682f8b0001761933b79bc3d3...
+2025-06-25 21:31:27,797 - INFO - GNN recommendations: 15
+2025-06-25 21:31:27,797 - INFO - Content-based recommendations: 15
+2025-06-25 21:31:27,798 - ERROR - Error fetching title for 6828d30acf45ad84b675fee9: invalid literal for int() with base 10: '6828d30acf45ad84b675fee9'
+2025-06-25 21:31:27,798 - ERROR - Error fetching title for 6828d30acf45ad84b675fc16: invalid literal for int() with base 10: '6828d30acf45ad84b675fc16'
+2025-06-25 21:31:27,798 - ERROR - Error fetching title for 6828d30acf45ad84b675ff1f: invalid literal for int() with base 10: '6828d30acf45ad84b675ff1f'
+2025-06-25 21:31:27,798 - ERROR - Error fetching title for 6828d30acf45ad84b675fb9d: invalid literal for int() with base 10: '6828d30acf45ad84b675fb9d'
+2025-06-25 21:31:27,798 - ERROR - Error fetching title for 6828d30acf45ad84b675fbf5: invalid literal for int() with base 10: '6828d30acf45ad84b675fbf5'
+2025-06-25 21:31:27,798 - ERROR - Error fetching title for 6828d30acf45ad84b675fc52: invalid literal for int() with base 10: '6828d30acf45ad84b675fc52'
+2025-06-25 21:31:27,799 - ERROR - Error fetching title for 6828d30acf45ad84b675ff6c: invalid literal for int() with base 10: '6828d30acf45ad84b675ff6c'
+2025-06-25 21:31:27,799 - ERROR - Error fetching title for 6828d30acf45ad84b675fe30: invalid literal for int() with base 10: '6828d30acf45ad84b675fe30'
+2025-06-25 21:31:27,799 - ERROR - Error fetching title for 6828d30acf45ad84b675fdf4: invalid literal for int() with base 10: '6828d30acf45ad84b675fdf4'
+2025-06-25 21:31:27,799 - ERROR - Error fetching title for 6828d30acf45ad84b675fc80: invalid literal for int() with base 10: '6828d30acf45ad84b675fc80'
+2025-06-25 21:31:27,799 - ERROR - Error fetching title for 6828d30acf45ad84b675fe50: invalid literal for int() with base 10: '6828d30acf45ad84b675fe50'
+2025-06-25 21:31:27,799 - ERROR - Error fetching title for 6828d30dcf45ad84b675ff7f: invalid literal for int() with base 10: '6828d30dcf45ad84b675ff7f'
+2025-06-25 21:31:27,799 - ERROR - Error fetching title for 6828d30acf45ad84b675ff55: invalid literal for int() with base 10: '6828d30acf45ad84b675ff55'
+2025-06-25 21:31:27,799 - ERROR - Error fetching title for 6828d30acf45ad84b675fe70: invalid literal for int() with base 10: '6828d30acf45ad84b675fe70'
+2025-06-25 21:31:27,799 - ERROR - Error fetching title for 6828d30acf45ad84b675fdc6: invalid literal for int() with base 10: '6828d30acf45ad84b675fdc6'
+2025-06-25 21:31:28,366 - INFO - Total candidates before MMR: 30
+2025-06-25 21:32:02,836 - INFO - Connected to MongoDB successfully.
+2025-06-25 21:32:02,836 - INFO - Loading data from MongoDB...
+2025-06-25 21:32:03,609 - INFO - Loaded data: 20 users, 1133 courses, 3513 articles
+2025-06-25 21:32:07,733 - INFO - Created graph with 30 edges
+2025-06-25 21:32:07,740 - INFO - Loading pre-trained embeddings...
+2025-06-25 21:32:07,887 - INFO - Loaded ../e-learning-platform/user_profiles.csv: 20 rows, 529 columns
+2025-06-25 21:32:07,888 - ERROR - Warning: File not found at 'user_profiles_articles.csv'.
+2025-06-25 21:32:08,508 - INFO - Loaded ../e-learning-platform/item_vectors_onehot.csv: 1133 rows, 337 columns
+2025-06-25 21:32:08,508 - ERROR - Warning: File not found at 'articles_profiles.csv'.
+2025-06-25 21:32:08,528 - INFO - Pre-trained embeddings loaded successfully.
+2025-06-25 21:32:08,529 - INFO - Initializing GNN model...
+2025-06-25 21:32:08,685 - INFO - Created 1133 course embeddings
+2025-06-25 21:32:08,686 - ERROR - Error loading model: [Errno 2] No such file or directory: 'gnn_model/lightgcn_model.pth'
+2025-06-25 21:32:08,686 - INFO - Continuing with randomly initialized GNN model weights
+2025-06-25 21:32:08,686 - INFO - Generating course recommendations for user 682f8b0001761933b79bc3d3...
+2025-06-25 21:32:08,759 - INFO - GNN recommendations: 15
+2025-06-25 21:32:08,759 - INFO - Content-based recommendations: 15
+2025-06-25 21:32:08,759 - ERROR - Error fetching title for 6828d30acf45ad84b675ff1f: invalid literal for int() with base 10: '6828d30acf45ad84b675ff1f'
+2025-06-25 21:32:08,759 - ERROR - Error fetching title for 6828d30acf45ad84b675fee9: invalid literal for int() with base 10: '6828d30acf45ad84b675fee9'
+2025-06-25 21:32:08,759 - ERROR - Error fetching title for 6828d30acf45ad84b675fc16: invalid literal for int() with base 10: '6828d30acf45ad84b675fc16'
+2025-06-25 21:32:08,759 - ERROR - Error fetching title for 6828d30acf45ad84b675fd2f: invalid literal for int() with base 10: '6828d30acf45ad84b675fd2f'
+2025-06-25 21:32:08,759 - ERROR - Error fetching title for 6828d30acf45ad84b675fc22: invalid literal for int() with base 10: '6828d30acf45ad84b675fc22'
+2025-06-25 21:32:08,759 - ERROR - Error fetching title for 6828d30acf45ad84b675ff5f: invalid literal for int() with base 10: '6828d30acf45ad84b675ff5f'
+2025-06-25 21:32:08,759 - ERROR - Error fetching title for 6828d30acf45ad84b675fd14: invalid literal for int() with base 10: '6828d30acf45ad84b675fd14'
+2025-06-25 21:32:08,759 - ERROR - Error fetching title for 6828d30acf45ad84b675fe20: invalid literal for int() with base 10: '6828d30acf45ad84b675fe20'
+2025-06-25 21:32:08,759 - ERROR - Error fetching title for 6828d30acf45ad84b675fe36: invalid literal for int() with base 10: '6828d30acf45ad84b675fe36'
+2025-06-25 21:32:08,760 - ERROR - Error fetching title for 6828d30acf45ad84b675fdab: invalid literal for int() with base 10: '6828d30acf45ad84b675fdab'
+2025-06-25 21:32:08,760 - ERROR - Error fetching title for 6828d30acf45ad84b675ff0c: invalid literal for int() with base 10: '6828d30acf45ad84b675ff0c'
+2025-06-25 21:32:08,760 - ERROR - Error fetching title for 6828d30dcf45ad84b675ff97: invalid literal for int() with base 10: '6828d30dcf45ad84b675ff97'
+2025-06-25 21:32:08,760 - ERROR - Error fetching title for 6828d30acf45ad84b675fc7b: invalid literal for int() with base 10: '6828d30acf45ad84b675fc7b'
+2025-06-25 21:32:08,760 - ERROR - Error fetching title for 6828d30acf45ad84b675fdf7: invalid literal for int() with base 10: '6828d30acf45ad84b675fdf7'
+2025-06-25 21:32:08,760 - ERROR - Error fetching title for 6828d30acf45ad84b675ff44: invalid literal for int() with base 10: '6828d30acf45ad84b675ff44'
+2025-06-25 21:32:11,182 - INFO - Total candidates before MMR: 30

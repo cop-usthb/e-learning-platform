@@ -18,7 +18,7 @@ export async function GET(request: NextRequest) {
     const { searchParams } = new URL(request.url)
     const num = parseInt(searchParams.get('num') || '8')
 
-    console.log(`Demande de recommandations pour l'utilisateur: ${session.user.id}`)
+    console.log(`🔍 Demande de recommandations pour l'utilisateur: ${session.user.id}`)
 
     // Récupérer les intérêts de l'utilisateur
     const { db } = await connectToDatabase()
@@ -26,34 +26,69 @@ export async function GET(request: NextRequest) {
       _id: new ObjectId(session.user.id) 
     })
     
-    const userInterests = user?.interests || []
-    console.log(`Intérêts de l'utilisateur: ${userInterests}`)
+    // S'assurer que les intérêts sont dans un format correct
+    let userInterests: string[] = []
+    if (user?.interests) {
+      if (typeof user.interests === 'string') {
+        userInterests = [user.interests]
+      } else if (Array.isArray(user.interests)) {
+        userInterests = user.interests.filter(interest => typeof interest === 'string')
+      }
+    }
+    
+    console.log(`👤 Intérêts de l'utilisateur:`, userInterests)
 
-    // Obtenir les recommandations via le script Python
-    const recommendations = await getRecommendationsForUser(
+    // Obtenir les recommandations via le script Python hybride
+    const { recommendations, executionInfo } = await getRecommendationsForUser(
       session.user.id,
       userInterests
     )
 
+    // Vérifier que recommendations est un array
+    if (!Array.isArray(recommendations)) {
+      console.error("❌ Recommendations is not an array:", recommendations)
+      return NextResponse.json({ 
+        success: false,
+        recommendations: [], 
+        executionInfo: { error: "Invalid recommendations format" },
+        count: 0,
+        method: 'error'
+      })
+    }
+
     // Limiter le nombre de recommandations
     const limitedRecommendations = recommendations.slice(0, num)
 
-    console.log(`Recommandations retournées: ${limitedRecommendations.length} cours`)
+    console.log(`✅ Recommandations retournées: ${limitedRecommendations.length} cours`)
+    console.log('📊 Scores finaux:', limitedRecommendations.map(r => 
+      `${r.id}: ${r.score_percentage}% (${r.method}) - ${r.title?.substring(0, 50)}...`
+    ))
+    console.log('🔍 Méthode utilisée:', executionInfo.pythonSuccess ? 'Python' : 'Fallback')
+    console.log('🔍 Première recommandation:', limitedRecommendations[0])
+    console.log('🔍 Attributs de score:', {
+      score: limitedRecommendations[0]?.score,
+      similarity_percentage: limitedRecommendations[0]?.similarity_percentage,
+      score_percentage: limitedRecommendations[0]?.score_percentage
+    })
 
     return NextResponse.json({
       success: true,
       recommendations: limitedRecommendations,
       count: limitedRecommendations.length,
-      method: 'python_collaborative',
-      user_interests: userInterests
+      method: executionInfo.pythonSuccess ? 'python_hybrid' : 'fallback',
+      user_interests: userInterests,
+      executionInfo
     })
 
   } catch (error) {
-    console.error('Erreur API recommandations:', error)
+    console.error('❌ Erreur API recommandations:', error)
     return NextResponse.json(
       { 
+        success: false,
         error: 'Erreur lors de la génération des recommandations',
-        details: error instanceof Error ? error.message : 'Erreur inconnue'
+        details: error instanceof Error ? error.message : 'Erreur inconnue',
+        recommendations: [],
+        count: 0
       },
       { status: 500 }
     )
