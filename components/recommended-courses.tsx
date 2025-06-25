@@ -1,13 +1,27 @@
+'use client'
+
+import { useSession } from 'next-auth/react'
+import Link from "next/link"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import Link from "next/link"
-import type { Course } from "@/lib/types"
 
 interface RecommendedCoursesProps {
-  courses: Course[]
+  courses: any[]
 }
 
 export function RecommendedCourses({ courses }: RecommendedCoursesProps) {
+  const { status } = useSession()
+
+  // Ne pas afficher si l'utilisateur n'est pas connecté
+  if (status === 'unauthenticated') {
+    return null
+  }
+
+  // Ne pas afficher pendant le chargement de la session
+  if (status === 'loading') {
+    return null
+  }
+
   return (
     <section className="py-12">
       <div className="container px-4 md:px-6">
@@ -25,19 +39,28 @@ export function RecommendedCourses({ courses }: RecommendedCoursesProps) {
           {courses.map((course) => (
             <Link key={course._id} href={`/courses/${course._id}`}>
               <Card className="h-full hover:shadow-md transition-shadow">
-                <CardHeader className="p-4">
-                  <div className="flex justify-between items-start">
-                    <CardTitle className="text-lg">{course.course}</CardTitle>
-                    {course.satisfactionRate && (
-                      <Badge variant="outline" className="ml-2">
-                        {course.satisfactionRate}% 
-                      </Badge>
-                    )}
-                  </div>
+                <CardHeader>
+                  <CardTitle className="line-clamp-2">{course.course}</CardTitle>
+                  {course.partner && (
+                    <p className="text-sm text-muted-foreground">Par {course.partner}</p>
+                  )}
                 </CardHeader>
-                <CardContent className="p-4 pt-0">
-                  <p className="text-sm text-muted-foreground line-clamp-2">{course.description}</p>
-                  <div className="mt-4 font-bold">Gratuit</div>
+                <CardContent>
+                  <div className="flex justify-between items-end">
+                    <div className="space-y-1">
+                      {course.satisfactionRate && (
+                        <Badge variant="secondary" className="text-xs">
+                          {course.satisfactionRate}% satisfaction
+                        </Badge>
+                      )}
+                      {course.theme && (
+                        <Badge variant="outline" className="text-xs">
+                          {course.theme}
+                        </Badge>
+                      )}
+                    </div>
+                    <span className="text-lg font-bold">Gratuit</span>
+                  </div>
                 </CardContent>
               </Card>
             </Link>

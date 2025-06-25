@@ -1,5 +1,6 @@
 'use client';
 
+import { useSession } from 'next-auth/react';
 import { useRecommendations } from '@/hooks/useRecommendations';
 import { Button } from './ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
@@ -7,10 +8,21 @@ import { Badge } from './ui/badge';
 import { Loader2, RefreshCw, AlertCircle } from 'lucide-react';
 
 export default function RecommendationsSection() {
+  const { status } = useSession();
   const { recommendations, loading, error, executionInfo, refetch } = useRecommendations({
     method: 'collaborative',
     num: 8
   });
+
+  // Ne pas afficher si l'utilisateur n'est pas connecté
+  if (status === 'unauthenticated') {
+    return null;
+  }
+
+  // Ne pas afficher pendant le chargement de la session
+  if (status === 'loading') {
+    return null;
+  }
 
   if (loading) {
     return (

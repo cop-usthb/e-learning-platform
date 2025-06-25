@@ -8,8 +8,8 @@ import { getRecommendedCourses } from "@/lib/courses"
 export default async function HomePage() {
   const session = await getServerSession(authOptions)
   
-  // Pour les utilisateurs non connectés, utiliser les cours recommandés génériques
-  const fallbackCourses = await getRecommendedCourses()
+  // Récupérer les cours recommandés SEULEMENT si l'utilisateur est connecté
+  const fallbackCourses = session ? await getRecommendedCourses() : []
 
   return (
     <div className="min-h-screen">
@@ -34,14 +34,8 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* Recommandations Section */}
-      {session?.user ? (
-        // Recommandations personnalisées pour les utilisateurs connectés
-        <HomeRecommendations />
-      ) : (
-        // Cours recommandés génériques pour les visiteurs
-        <RecommendedCourses courses={fallbackCourses} />
-      )}
+      {/* Section Recommandations - seulement si connecté */}
+      <HomeRecommendations />
 
       {/* Features Section */}
       <section className="py-16">

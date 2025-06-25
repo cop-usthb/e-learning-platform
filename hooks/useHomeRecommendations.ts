@@ -1,84 +1,66 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
+import { useSession } from 'next-auth/react'
+import type { RecommendedCourse } from '@/lib/recommendation'
 
-interface Course {
-  id: number
-  _id?: string
-  title?: string
-  course?: string
-  description?: string
-  partner?: string
-  theme?: string
-  rating?: number
-  similarity?: number
-  recommendationRank?: number
-  [key: string]: any
-}
-
-interface RecommendationsResponse {
-  success: boolean
-  recommendations: Course[]
-  count: number
-  method: string
-  user_interests: string[]
-}
-
-export function useHomeRecommendations(numCourses: number = 12) {
-  const [recommendations, setRecommendations] = useState<Course[]>([])
-  const [loading, setLoading] = useState(true)
+export function useHomeRecommendations(num = 8) {
+  const { data: session, status } = useSession()
+  const [recommendations, setRecommendations] = useState<RecommendedCourse[]>([])
+  const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
-  const [userInterests, setUserInterests] = useState<string[]>([])
 
-  const fetchRecommendations = async () => {
+  const fetchRecommendations = useCallback(async () => {
+    // Ne pas faire d'appel API si l'utilisateur n'est pas connecté
+    if (status === 'unauthenticated') {
+      setRecommendations([])
+      setLoading(false)
+      setError(null)
+      return
+    }
+
+    // Attendre que le statut soit déterminé
+    if (status === 'loading') {
+      return
+    }
+
+    // Vérifier qu'on a bien une session
+    if (!session?.user) {
+      setRecommendations([])
+      setLoading(false)
+      setError(null)
+      return
+    }
+
     try {
       setLoading(true)
       setError(null)
-
-      console.log(`Récupération de ${numCourses} recommandations pour la page d'accueil`)
-
-      const response = await fetch(`/api/recommendations?num=${numCourses}`)
       
+      console.log('Fetching recommendations for authenticated user:', session.user.id)
+      
+      const response = await fetch(`/api/recommendations?num=${num}`)
       if (!response.ok) {
-        const errorData = await response.json()
-        throw new Error(errorData.error || 'Erreur lors du chargement des recommandations')
+        throw new Error('Erreur lors du chargement des recommandations')
       }
-
-      const data: RecommendationsResponse = await response.json()
       
-      // Traiter les recommandations pour s'assurer de la cohérence des données
-      const processedRecommendations = (data.recommendations || []).map((course, index) => ({
-        ...course,
-        id: course.id || index,
-        _id: course._id || course.id?.toString(),
-        recommendationRank: index + 1,
-        similarity: course.similarity || 0
-      }))
-      
-      setRecommendations(processedRecommendations)
-      setUserInterests(data.user_interests || [])
-      
-      console.log(`Recommandations chargées: ${data.count} cours`)
-      console.log(`Méthode utilisée: ${data.method}`)
-
+      const data = await response.json()
+      setRecommendations(data.recommendations || [])
     } catch (err) {
-      const errorMessage = err instanceof Error ? err.message : 'Une erreur est survenue'
-      setError(errorMessage)
-      console.error('Erreur lors du chargement des recommandations:', errorMessage)
+      console.error('Error fetching recommendations:', err)
+      setError(err instanceof Error ? err.message : 'Une erreur est survenue')
     } finally {
       setLoading(false)
     }
-  }
+  }, [num, status, session])
 
   useEffect(() => {
     fetchRecommendations()
-  }, [numCourses])
+  }, [fetchRecommendations])
 
   return {
     recommendations,
     loading,
     error,
-    userInterests,
     refetch: fetchRecommendations
   }
 }
